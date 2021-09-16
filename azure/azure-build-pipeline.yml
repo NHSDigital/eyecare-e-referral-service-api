@@ -1,7 +1,16 @@
 name: "$(SourceBranchName)+$(BuildID)"
 
-trigger: none
-pr: none
+trigger:
+  branches:
+    include:
+      - tags/refs/v*
+  tags:
+    include:
+      - v*
+
+pr:
+  branches:
+    include: ['*']
 
 resources:
   repositories:

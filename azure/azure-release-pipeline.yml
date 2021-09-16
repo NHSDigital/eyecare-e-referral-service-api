@@ -44,9 +44,3 @@ extends:
         make_spec_visible: true
         depends_on:
             - internal_dev
-      - environment: prod
-        proxy_path: live
-        make_spec_visible: true
-        depends_on:
-            - int
-            
