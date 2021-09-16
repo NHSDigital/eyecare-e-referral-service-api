@@ -5,4 +5,4 @@ x-meta:
   product_display_name: "Eyecare eReferrals Service API"
   service_base_path: "eyecare-referrals"
   product_description: "This API is mine."
-  pipeline_name_prefix: "My-API"
+  pipeline_name_prefix: "Eyecare-Referrals-"
