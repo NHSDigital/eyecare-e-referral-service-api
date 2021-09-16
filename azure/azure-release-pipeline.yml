@@ -10,9 +10,10 @@ resources:
       name: NHSDigital/api-management-utils
       ref: refs/heads/edge
       endpoint: NHSDigital
+
   pipelines:
   - pipeline: build_pipeline
-    source: "Eyecare-Referrals-Build"
+    source: "Eyecare-Referrals-Specification-Build"
     trigger:
       branches:
         include:
@@ -33,31 +34,19 @@ extends:
     product_display_name: ${{ variables.product_display_name }}
     product_description: ${{ variables.product_description }}
     spec_file: ${{ variables.spec_file }}
+    enable_monitoring: false
+    enable_status_monitoring: false
+    prod_requires_approval: false
     apigee_deployments:
       - environment: internal-dev
-        make_spec_visible: true  # Off by default. Turn on to allow expose API developers can subscribe their Apps to
-        post_deploy:
-          - template: ./templates/run-smoke-tests.yml
-      - environment: internal-qa
         make_spec_visible: true
-        post_deploy:
-          - template: ./templates/run-smoke-tests.yml
-      - environment: internal-qa-sandbox
-        proxy_path: sandbox
+      - environment: int
         make_spec_visible: true
-        post_deploy:
-          - template: ./templates/run-smoke-tests.yml
-    # make_spec_visible is false for sandbox environment
-    # (App subscription make sense for most sandbox implementations)
-      - environment: sandbox
-        proxy_path: sandbox
-        post_deploy:
-          - template: ./templates/run-smoke-tests.yml
-    # Enable int environment when ready by uncommenting:
-    #   - environment: int
-    #     make_spec_visible: true
-    #     depends_on:
-    #       - internal_qa
-    #       - internal_qa_sandbox
-    #     post_deploy:
-    #       - template: ./templates/run-smoke-tests.yml
+        depends_on:
+            - internal_dev
+      - environment: prod
+        proxy_path: live
+        make_spec_visible: true
+        depends_on:
+            - int
+            

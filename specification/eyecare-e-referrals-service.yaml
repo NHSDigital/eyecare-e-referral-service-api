@@ -10,6 +10,9 @@ x-meta:
 info:
   title: Eyecare Referral API
   version: '1.0'
+  contact:
+    url: 'https://digital.nhs.uk/developer/help-and-support'
+    email: api.management@nhs.net
   description: >-
     A simple API to allow details of a new referral to be passed to an EeRS
     (Eyecare e-referral system)
@@ -80,6 +83,7 @@ paths:
       - schema:
           type: string
         name: referralID
+        description: referral ID
         in: path
         required: true
     get:
