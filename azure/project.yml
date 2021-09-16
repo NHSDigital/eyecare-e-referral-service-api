@@ -1,0 +1,7 @@
+variables:
+  service_name: eyecare-e-referrals-service
+  short_service_name: eye
+  service_base_path: eyecare-referrals
+  product_display_name: Eyecare eReferrals Service API
+  product_description: This API is mine.
+  spec_file: eyecare-e-referrals-service.json
