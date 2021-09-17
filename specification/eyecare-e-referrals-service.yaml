@@ -1,5 +1,5 @@
 openapi: 3.0.0
-x-nhs-api-spec-guid: 9bf88681-af26-4d52-9327-7fa172eb11fe
+x-nhs-api-spec-guid: bf6758a5-b731-4640-876a-f7ad56e36029
 x-meta:
   service_name: "eyecare-e-referrals-service"
   short_service_name: "eye"
