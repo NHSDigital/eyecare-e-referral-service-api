@@ -1,3 +1,4 @@
+
 name: "$(SourceBranchName)+$(BuildID)"
 
 trigger:
@@ -22,6 +23,7 @@ resources:
 
 variables:
   - template: project.yml
+
 extends:
   template: azure/common/apigee-build.yml@common
   parameters:

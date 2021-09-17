@@ -23,7 +23,7 @@ meta:
     name: eyecare-e-referrals-service
     guid: 9bf88681-af26-4d52-9327-7fa172eb11fe
     spec_guids:
-      - 9bf88681-af26-4d52-9327-7fa172eb11fe
+      - bf6758a5-b731-4640-876a-f7ad56e36029
   schema_version: 1.1
 apigee:
   environments:

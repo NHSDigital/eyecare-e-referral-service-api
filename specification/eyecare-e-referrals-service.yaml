@@ -1,5 +1,5 @@
 openapi: 3.0.0
-x-nhs-api-spec-guid: 9bf88681-af26-4d52-9327-7fa172eb11fe
+x-nhs-api-spec-guid: bf6758a5-b731-4640-876a-f7ad56e36029
 x-meta:
   service_name: "eyecare-e-referrals-service"
   short_service_name: "eye"
@@ -10,6 +10,9 @@ x-meta:
 info:
   title: Eyecare Referral API
   version: '1.0'
+  contact:
+    url: 'https://digital.nhs.uk/developer/help-and-support'
+    email: api.management@nhs.net
   description: >-
     A simple API to allow details of a new referral to be passed to an EeRS
     (Eyecare e-referral system)
@@ -80,6 +83,7 @@ paths:
       - schema:
           type: string
         name: referralID
+        description: referral ID
         in: path
         required: true
     get:
