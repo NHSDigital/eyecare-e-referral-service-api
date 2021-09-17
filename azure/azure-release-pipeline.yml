@@ -13,7 +13,7 @@ resources:
 
   pipelines:
   - pipeline: build_pipeline
-    source: "Eyecare-Referrals-Specification-Build"
+    source: "Eyecare-Referrals-Build"
     trigger:
       branches:
         include:
