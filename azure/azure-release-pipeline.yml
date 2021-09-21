@@ -40,7 +40,7 @@ extends:
     apigee_deployments:
       - environment: internal-dev
         make_spec_visible: true
-      # - environment: int
-      #   make_spec_visible: true
-      #   depends_on:
-      #       - internal_dev
+      - environment: int
+        make_spec_visible: true
+        depends_on:
+            - internal_dev

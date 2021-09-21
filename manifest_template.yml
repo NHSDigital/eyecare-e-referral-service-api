@@ -4,9 +4,8 @@ DESCRIPTION: This API is mine.
 APIGEE_ENVIRONMENTS:
   - name: internal-dev
     display_name: Internal Development
-# Enable int environment when ready by uncommenting:
-#   - name: int
-#     display_name: Integration Testing
+  - name: int
+    display_name: Integration Testing
 ---
 meta:
   api:
