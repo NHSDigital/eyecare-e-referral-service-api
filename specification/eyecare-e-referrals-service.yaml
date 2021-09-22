@@ -14,7 +14,7 @@ info:
     url: 'https://digital.nhs.uk/developer/help-and-support'
     email: api.management@nhs.net
   description: >-
-       ## Overview
+    ## Overview
     Use this API to pass details of a new referral from an Optomoetry Patient Management System (Optometry PMS) to an Eyecare e-referral system (EeRS).
     The goal of the API is to pre-populate clinical, user and patient information from Optometry PMS systems to an EeRS  – saving clinicians time and improving patient safety.    
     
