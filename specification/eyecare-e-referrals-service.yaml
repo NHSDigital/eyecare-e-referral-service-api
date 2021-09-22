@@ -17,23 +17,35 @@ info:
     ## Overview
     Use this API to pass details of a new referral from an Optomoetry Patient Management System (Optometry PMS) to an Eyecare e-referral system (EeRS).
     The goal of the API is to pre-populate clinical, user and patient information from Optometry PMS systems to an EeRS  – saving clinicians time and improving patient safety.    
+    The API standard supports auto-population of GOS18 and associated referral data from Optical IT systems. This is important to engaging Optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
     
     This API is a published specification only.  The API is implemented and exposed by each EeRS system.  Therefore implementing the API and integrating is done directly with each of the EeRS systems, and not via NHS Digital services.
     
     You can:
     Transfer key clinical, patient and practitioner information associated with making a referral to NHS health services via an EeRS. 
     The API standard supports auto-population of GOS18 and associated referral data from the Optometry PMS. 
-    This is important to engaging Optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
-
+    
     ## Who can use this API
-    This API can be used by any Optometry PMS to send a referral into a specific EeRS system. Integrated Care Systems will request that each Optometry system in use in their area links to their specific EeRS system.
+    This API can be used by any Optometry PMS to allow an Optometrist to send a referral into a specific EeRS system. Integrated Care Systems will request that each Optometry system in use in their area links to their specific EeRS system.
     
     The EeRS systems are procured by each NHS region from the [Dynamic Purchasing System (DPS) for Electronic Eyecare Referral Systems (EeRS)](https://www.nhsx.nhs.uk/key-tools-and-info/procurement-frameworks/dynamic-purchasing-system-electronic-eyecare-referral-systems/). 
+    Each if these systems is a receiver of referrals via this API and has their own endpoint for the service.
     
-    ### Access modes
-    This API has one access mode:
+    Therefore, sending Optometry PMS systems will need to link to each EeRS eyecare e-referral supplier's implementation of the API.  Also each endpoint will require to be secured via an APIKEY provided by that supplier.
     
+    ### Build the API in an Optometry PMS.
     
+    Use the following steps to implement the API as a sending Optometty PMS to a specific EeRS:
+    
+    1). Identify the data fields in your system that correspond to the data fields in the specification
+    2). Create a way of initiating the API – ideally using a “refer via EeRS” button in the right place in your PMS system for the stores that are associated with that EeRS referral platform
+    3). Ask the EeRS supplier you are integrating with for a system to system API key 
+    4). Ask the EeRS supplier for an API endpoint
+    5). Develop your system to connect to the API and send the API key with the data payload to that EeRS endpoint 
+    6). Test that the script and launch process are working with the EeRS supplier, and check the right data fields are coming across with a clinician 
+    7). Go live with the API for the practices that are licensed for use of the EeRS supplier in question
+    8). Maintain a log of which sites are using which EeRS systems. EeRS suppliers should be able to confirm this at the practice level for you
+
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
@@ -89,7 +101,18 @@ paths:
                       processed
         '500':
           description: Internal Server Error
-      description: Create a new referral in the EeRS system
+      description: 
+      Create a new referral in the EeRS system
+      
+      Step 1: Clinician decides to launch a referral and clicks “refer via EeRS” or similar on the PMS system
+        - PMS system gathers the data payload to send via the API
+        - PMS system identifies the EeRS supplier API to call based on the optom practice where the practitioner has clicked ‘launch EeRS referral’
+        - PMS system initiates API by sending APIkey to the digital referrals (EeRS) supplier in question with the data payload
+        - Digital referrals supplier provides a response 201 with a URL - or an error message
+        - PMS system launches the URL for the user
+      Step 2: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral
+      Step 3: The user sends and/or saves the referral using the digital referrals system.
+
       requestBody:
         content:
           application/json:
@@ -125,7 +148,14 @@ paths:
         '500':
           description: Internal Server Error
       operationId: get-referral-referralID-status
-      description: Returns the status of the referral with the given ID
+      description: 
+      Returns the status of the referral with the given ID
+      
+      A status update may be initiated by a clinician or admin, or set to initiated automatically for all referrals as desired.
+    
+        - PMS system requests a status check to a specific referral ID using the same APIkey as for the referral
+        - EeRS supplier provides response
+        - PMS system exposes the URL associated with the referral from the original API call associated with that referral, so that the user can receive a prompt to complete their referral in the EeRS system without additional manual authentication.
 components:
   schemas:
     Referral:
