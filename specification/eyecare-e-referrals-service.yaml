@@ -14,8 +14,26 @@ info:
     url: 'https://digital.nhs.uk/developer/help-and-support'
     email: api.management@nhs.net
   description: >-
-    A simple API to allow details of a new referral to be passed to an EeRS
-    (Eyecare e-referral system)
+       ## Overview
+    Use this API to pass details of a new referral from an Optomoetry Patient Management System (Optometry PMS) to an Eyecare e-referral system (EeRS).
+    The goal of the API is to pre-populate clinical, user and patient information from Optometry PMS systems to an EeRS  – saving clinicians time and improving patient safety.    
+    
+    This API is a published specification only.  The API is implemented and exposed by each EeRS system.  Therefore implementing the API and integrating is done directly with each of the EeRS systems, and not via NHS Digital services.
+    
+    You can:
+    Transfer key clinical, patient and practitioner information associated with making a referral to NHS health services via an EeRS. 
+    The API standard supports auto-population of GOS18 and associated referral data from the Optometry PMS. 
+    This is important to engaging Optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
+
+    ## Who can use this API
+    This API can be used by any Optometry PMS to send a referral into a specific EeRS system. Integrated Care Systems will request that each Optometry system in use in their area links to their specific EeRS system.
+    
+    The EeRS systems are procured by each NHS region from the [Dynamic Purchasing System (DPS) for Electronic Eyecare Referral Systems (EeRS)](https://www.nhsx.nhs.uk/key-tools-and-info/procurement-frameworks/dynamic-purchasing-system-electronic-eyecare-referral-systems/). 
+    
+    ### Access modes
+    This API has one acces mode:
+    
+    
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
