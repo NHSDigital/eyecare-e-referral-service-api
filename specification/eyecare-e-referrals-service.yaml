@@ -101,7 +101,7 @@ paths:
                       processed
         '500':
           description: Internal Server Error
-      description: 
+      description: >-
       Create a new referral in the EeRS system
       
       Step 1: Clinician decides to launch a referral and clicks “refer via EeRS” or similar on the PMS system
@@ -148,7 +148,7 @@ paths:
         '500':
           description: Internal Server Error
       operationId: get-referral-referralID-status
-      description: 
+      description: >-
       Returns the status of the referral with the given ID
       
       A status update may be initiated by a clinician or admin, or set to initiated automatically for all referrals as desired.
