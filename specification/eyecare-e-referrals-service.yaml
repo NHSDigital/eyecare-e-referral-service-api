@@ -102,16 +102,16 @@ paths:
         '500':
           description: Internal Server Error
       description: >-
-      Create a new referral in the EeRS system
-      
-      Step 1: Clinician decides to launch a referral and clicks “refer via EeRS” or similar on the PMS system
-        - PMS system gathers the data payload to send via the API
-        - PMS system identifies the EeRS supplier API to call based on the optom practice where the practitioner has clicked ‘launch EeRS referral’
-        - PMS system initiates API by sending APIkey to the digital referrals (EeRS) supplier in question with the data payload
-        - Digital referrals supplier provides a response 201 with a URL - or an error message
-        - PMS system launches the URL for the user
-      Step 2: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral
-      Step 3: The user sends and/or saves the referral using the digital referrals system.
+        Create a new referral in the EeRS system
+
+        Step 1: Clinician decides to launch a referral and clicks “refer via EeRS” or similar on the PMS system
+          - PMS system gathers the data payload to send via the API
+          - PMS system identifies the EeRS supplier API to call based on the optom practice where the practitioner has clicked ‘launch EeRS referral’
+          - PMS system initiates API by sending APIkey to the digital referrals (EeRS) supplier in question with the data payload
+          - Digital referrals supplier provides a response 201 with a URL - or an error message
+          - PMS system launches the URL for the user
+        Step 2: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral
+        Step 3: The user sends and/or saves the referral using the digital referrals system.
 
       requestBody:
         content:
@@ -149,13 +149,13 @@ paths:
           description: Internal Server Error
       operationId: get-referral-referralID-status
       description: >-
-      Returns the status of the referral with the given ID
-      
-      A status update may be initiated by a clinician or admin, or set to initiated automatically for all referrals as desired.
-    
-        - PMS system requests a status check to a specific referral ID using the same APIkey as for the referral
-        - EeRS supplier provides response
-        - PMS system exposes the URL associated with the referral from the original API call associated with that referral, so that the user can receive a prompt to complete their referral in the EeRS system without additional manual authentication.
+        Returns the status of the referral with the given ID
+
+        A status update may be initiated by a clinician or admin, or set to initiated automatically for all referrals as desired.
+
+          - PMS system requests a status check to a specific referral ID using the same APIkey as for the referral
+          - EeRS supplier provides response
+          - PMS system exposes the URL associated with the referral from the original API call associated with that referral, so that the user can receive a prompt to complete their referral in the EeRS system without additional manual authentication.
 components:
   schemas:
     Referral:
