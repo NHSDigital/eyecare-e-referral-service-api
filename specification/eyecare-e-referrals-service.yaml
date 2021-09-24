@@ -1,4 +1,12 @@
 openapi: 3.0.0
+x-nhs-api-spec-guid: bf6758a5-b731-4640-876a-f7ad56e36029
+x-meta:
+  service_name: "eyecare-e-referrals-service"
+  short_service_name: "eye"
+  product_display_name: "Eyecare Referral API"
+  service_base_path: "eyecare-referrals"
+  product_description: "A simple API to allow details of a new referral to be passed to an Eyecare e-referral system (EeRS) from an Optometry patient management system."
+  pipeline_name_prefix: "Eyecare-Referrals"
 info:
   title: Eyecare Referral API
   version: '1.0'
