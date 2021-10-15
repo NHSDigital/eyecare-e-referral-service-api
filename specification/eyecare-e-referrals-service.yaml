@@ -30,18 +30,21 @@ info:
     You can:
     - transfer key clinical, patient and practitioner information associated with making a referral to NHS health services via an EeRS
     - auto-populate GOS18 and associated referral data from the Optometry PMS
+
     
     ## Who can use this API
     
     This API standard can be used by any Optometry PMS to allow an Optometrist to send a referral into a specific EeRS system. Integrated Care Systems require each Optometry system in use in their area to link to their specific EeRS system.
     
     ## API status and roadmap
+
     This API is in [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
       * it is available for production use
       * we might make breaking changes, but only if we can not avoid it, and we will give an advance notice
     
     To suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=eyecare-e-referral-api&deleted=0#controls).
-    If you have any other queries, please [contact us](https://digital.nhs.uk/developer/help-and-support).
+    
+    If you have any other queries, please contact us at bookingandreferrals@nhs.net.
     
     ## Technology
     This API uses HTTP POST to submit data.
