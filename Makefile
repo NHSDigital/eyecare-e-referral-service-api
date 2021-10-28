@@ -5,7 +5,6 @@ install-python:
 
 install-node:
 	npm install
-	cd sandbox && npm install
 
 .git/hooks/pre-commit:
 	cp scripts/pre-commit .git/hooks/pre-commit
@@ -14,7 +13,6 @@ install: install-node install-python .git/hooks/pre-commit
 
 lint:
 	npm run lint
-	find . -name '*.py' -not -path '**/.venv/*' | xargs poetry run flake8
 
 clean:
 	rm -rf build
@@ -34,25 +32,11 @@ check-licenses:
 format:
 	poetry run black **/*.py
 
-start-sandbox:
-	cd sandbox && npm run start
+_dist_include="poetry.lock poetry.toml pyproject.toml Makefile build/."
 
-build-proxy:
-	scripts/build_proxy.sh
-
-_dist_include="pytest.ini poetry.lock poetry.toml pyproject.toml Makefile build/. tests"
-
-release: clean publish build-proxy
+release: clean publish
 	mkdir -p dist
 	for f in $(_dist_include); do cp -r $$f dist; done
-	cp ecs-proxies-deploy.yml dist/ecs-deploy-sandbox.yml
-	cp ecs-proxies-deploy.yml dist/ecs-deploy-internal-qa-sandbox.yml
-	cp ecs-proxies-deploy.yml dist/ecs-deploy-internal-dev-sandbox.yml
 
 test:
-#	this target should be used for local unit tests ..  runs as part of the build pipeline
-	make --no-print-directory -C sandbox test
-
-smoketest:
-#	this target is for end to end smoketests this would be run 'post deploy' to verify an environment is working
-	poetry run pytest -v --junitxml=smoketest-report.xml -s -m smoketest
+	@echo no tests for spec-only API
