@@ -59,18 +59,18 @@ info:
     Each EeRS endpoint must be secured via an API key. Note that we recommend the use of an 128-bit API key as a minimum.
     Liaise with the EeRS supplier you are integrating with, to get an API key for their endpoint configuration.
 
-    ## Building the API standard into an Optometry PMS.
+    ## Building the API standard into an Optometry PMS
     
     Use the following steps to implement the API as a sending Optometry PMS to a specific EeRS:
     
     1. Identify the data fields in your system that correspond to the data fields in the specification.
-    2. Ask the EeRS supplier you are integrating with to provide a system-to-system API key. 
-    3. Ask the EeRS supplier to provide their API endpoint.
+    2. Ask the EeRS supplier to provide their API endpoint.
+    3. Ask the EeRS supplier you are integrating with to provide a system-to-system API key. 
     4. Develop your system to connect to the API and send the API key with the data payload to that EeRS endpoint. 
     5. Design a way of initiating the referral process from the Optometry PMS – ideally using a “refer via EeRS” button in the right part of the workflow in your PMS system
-    6. Test that referral process is working from your Optomotry PMS to the endpoint with the EeRS supplier, and check with a clinician that the right data fields are coming across inside the EeRS system. 
+    6. Test that referral process is working from your Optomotry PMS to the endpoint with the EeRS, and check with a clinician that the right data fields are coming across inside the EeRS system. 
 
-    ## Building the API standard into an Optometry PMS.
+    ## Onboarding
     
     Liaise with NHSX for onboarding your service into live operation.
     
@@ -99,7 +99,7 @@ paths:
                     referralID: 123e4567-e89b-12d3-a456-426614174000
                     referralURL: >-
                       https://someEeRSSystem/referrals/123e4567-e89b-12d3-a456-426614174000
-                    referralStatus: received
+                    referralStatus: incomplete
                     errorMessage: ''
         '400':
           description: Bad Request
@@ -676,6 +676,7 @@ components:
         * closednotsubmitted - the referral has been closed by the user without being submitted for any further review or action by service providers
         e.g. because a clinician decided that a referral wasn't necessary
       example:
+        - referralStatus: incomplete
         - referralStatus: submitted
         - referralStatus: closednotsubmitted
     Prism:
