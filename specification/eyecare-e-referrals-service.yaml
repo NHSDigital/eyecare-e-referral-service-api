@@ -18,7 +18,8 @@ info:
     
     Use this API standard to pass details of a new referral from an Optometry Patient Management System (Optometry PMS) to an Eyecare e-referral system (EeRS).
     
-    The goal of the API standard is to pre-populate clinical, user and patient information from an Optometry PMS system to an EeRS – saving clinicians time and improving patient safety. 
+    The goal of the API standard is to pre-populate clinical, user and patient information from an Optometry PMS to an EeRS. 
+
     The API standard supports auto-population of GOS18 and associated referral data from the Optomoetry PMS. This is important to engaging Optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
     
     Each NHS region will procure an EeRS system from the [Dynamic Purchasing System (DPS) for Electronic Eyecare Referral Systems (EeRS)](https://www.nhsx.nhs.uk/key-tools-and-info/procurement-frameworks/dynamic-purchasing-system-electronic-eyecare-referral-systems/). 
