@@ -84,7 +84,7 @@ servers:
 paths:
   '/referrals':
     post:
-      summary: ''
+      summary: 'POST Referrals'
       operationId: post-referrals
       responses:
         '201':
