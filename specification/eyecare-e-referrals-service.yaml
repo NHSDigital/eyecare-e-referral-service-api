@@ -15,7 +15,7 @@ info:
     email: api.management@nhs.net
   description: |
     ## Overview
-    
+
     Use this API standard to pass details of a new referral from an Optometry Patient Management System (Optometry PMS) to an Eyecare e-referral system (EeRS).
     
     The goal of the API standard is to pre-populate clinical, user and patient information from an Optometry PMS to an EeRS. 
@@ -32,22 +32,23 @@ info:
     - transfer key clinical, patient and practitioner information associated with making a referral to NHS health services via an EeRS
     - auto-populate GOS18 and associated referral data from the Optometry PMS
 
-    
+
     ## Who can use this API
-    
+
     This API standard can be used by any Optometry PMS to allow an Optometrist to send a referral into a specific EeRS system. Integrated Care Systems require each Optometry system in use in their area to link to their specific EeRS system.
-    
+
     ## API status and roadmap
 
     This API standard is in [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
       * it is available for production use
       * we might make breaking changes, but only if we cannot avoid it, and we will give an advance notice
-    
+
     To suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=eyecare-e-referral-api&deleted=0#controls).
-    
+
     If you have any other queries, please contact us at bookingandreferrals@nhs.net.
-    
+
     ## Technology
+    
     This API standard uses HTTP POST to submit data.
     
     ## Network access
@@ -62,7 +63,7 @@ info:
     ## Building the API standard into an Optometry PMS
     
     Use the following steps to implement the API as a sending Optometry PMS to a specific EeRS:
-    
+
     1. Identify the data fields in your system that correspond to the data fields in the specification.
     2. Ask the EeRS supplier to provide their API endpoint.
     3. Ask the EeRS supplier you are integrating with to provide a system-to-system API key. 
@@ -73,12 +74,11 @@ info:
     ## Onboarding
     
     Liaise with NHSX for onboarding your service into live operation.
-    
 
 servers:
   # Added by API Auto Mocking Plugin
 
-  - description: SwaggerHub API Auto Mocking
+  - description: SwaggerHub API Auto Mocking - RW
     url: https://virtserver.swaggerhub.com/Sphinx/Eyecare/1.0
   - url: 'http://localhost:3000'
 paths:
