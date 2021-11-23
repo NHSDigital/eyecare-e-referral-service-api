@@ -48,7 +48,7 @@ info:
     If you have any other queries, please contact us at bookingandreferrals@nhs.net.
 
     ## Technology
-    
+
     This API standard uses HTTP POST to submit data.
     
     ## Network access
@@ -133,14 +133,16 @@ paths:
           description: Internal Server Error
       description: >-
         ### Create a new referral in the EeRS system
-        Step 1: Clinician decides to launch a referral and clicks “refer via EeRS” or similar on the PMS system
+
+        **Step 1**: Clinician decides to launch a referral and clicks “refer via EeRS” or similar on the PMS system
           - PMS system gathers the data payload to send via the API
           - PMS system identifies the EeRS supplier API to call based on the optom practice where the practitioner has clicked ‘launch EeRS referral’
           - PMS system initiates API by sending API key to the digital referrals (EeRS) supplier in question with the data payload
           - Digital referrals supplier provides a response 201 with a URL - or an error message
           - PMS system launches the URL for the user
-        Step 2: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral
-        Step 3: The user sends and/or saves the referral using the digital referrals system.
+
+        **Step 2**: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral.\
+        **Step 3**: The user sends and/or saves the referral using the digital referrals system.
       requestBody:
         content:
           application/json:
@@ -178,6 +180,7 @@ paths:
       operationId: get-referral-referralID-status
       description: >-
         ### Returns the status of the referral with the given ID
+
         A status update can be initiated by a clinician or admin, or set to be initiated automatically for all referrals as desired.
           - PMS system requests a status check to a specific referral ID using the same API key as for the referral
           - EeRS supplier provides response
@@ -670,11 +673,14 @@ components:
             - closednotsubmitted
       description: >-
         Shows the current status of the referral which will be one of:
-        * incomplete - the referral has been received in the EeRS system but has
-        not yet not been closed or submitted
-        * submitted - the referral has been submitted to a provider of onwards care
-        * closednotsubmitted - the referral has been closed by the user without being submitted for any further review or action by service providers
-        e.g. because a clinician decided that a referral wasn't necessary
+        
+        **incomplete** - the referral has been received in the EeRS system but has
+        not yet not been closed or submitted.
+
+        **submitted** - the referral has been submitted to a provider of onwards care.
+        
+        **closednotsubmitted** - the referral has been closed by the user without being submitted for any further review or action by service providers
+        e.g. because a clinician decided that a referral wasn't necessary.
       example:
         - referralStatus: incomplete
         - referralStatus: submitted
@@ -685,7 +691,7 @@ components:
         - type: string
           description: >-
             Allows the base and prism to be represented as an unformatted string
-            as entered by the user
+            as entered by the user.
         - type: object
           properties:
             in:
