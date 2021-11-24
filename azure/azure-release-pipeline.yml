@@ -34,6 +34,6 @@ extends:
     proxy_path: ''
     apigee_deployments:
       - environment: internal-dev
-      # - environment: int
-      #   depends_on:
-      #       - internal_dev
+      - environment: int
+        depends_on:
+          - internal_dev
