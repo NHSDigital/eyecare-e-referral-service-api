@@ -101,8 +101,21 @@ paths:
                       https://someEeRSSystem/referrals/123e4567-e89b-12d3-a456-426614174000
                     referralStatus: incomplete
                     errorMessage: ''
-        '400':
-          description: Bad Request
+                    errorCode: ''
+        '4XX':
+          description: |
+            An error occurred as follows:
+              
+            | HTTP status | errorMessage                                               | errorCode | Scenario                                                |
+            | ----------- |----------------------------------------------------------- |---------- | ------------------------------------------------------- |
+            | 400         | Malformed JSON                                             | E0001     | JSON could not be parsed for processing. It is invalid. |
+            | 400         | Empty JSON body                                            | E0002     | No JSON was received in the request body.               |
+            | 400         | A null value was submitted in one or more required fields.  The fields are [insert field list]. | E0002     | No JSON was received in the request body. | 
+            | 401         | Authentication failed     | E0010         | Either the API-KEY is invalid or the values in the ODS and GOCNumber fields failed authentication. |
+            | 422         | ODS Code Invalid          | E0006         | ODS Code supplied not matched in EeRS system               |
+            | 422         | GOC Number Invalid        | E0007         | The value supplied in the GOCNumber field is not valid as defined by the EeRS                      |
+            | 422         | A data type could not be converted        | E0008         | This error is used when the conversion to the target data type cannot be made.                      |
+      
           content:
             application/json:
               schema:
@@ -112,43 +125,32 @@ paths:
                   value:
                     referralID: ''
                     referralURL: ''
-                    errorMessage: The request was malformed and couldn't be processed
-        '401':
-          description: Unauthorized
-        '422':
-          description: Unprocessable Entity (WebDAV)
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Response'
-              example:
-                Unprocessable example (business rule failures etc.):
-                  value:
-                    referralID: ''
-                    referralURL: ''
-                    errorMessage: >-
-                      The request was syntactically correct but couldn't be
-                      processed
+                    referralStatus: ''
+                    errorMessage: As per description
+                    errorCode: As per description
+
         '500':
           description: Internal Server Error
-      description: >-
-        ### Create a new referral in the EeRS system
 
-        **Step 1**: Clinician decides to launch a referral and clicks “refer via EeRS” or similar on the PMS system
+      description: >-
+         ### Create a new referral in the EeRS system
+
+          **Step 1**: Clinician decides to launch a referral and clicks “refer via EeRS” or similar on the PMS system
           - PMS system gathers the data payload to send via the API
           - PMS system identifies the EeRS supplier API to call based on the optom practice where the practitioner has clicked ‘launch EeRS referral’
           - PMS system initiates API by sending API key to the digital referrals (EeRS) supplier in question with the data payload
           - Digital referrals supplier provides a response 201 with a URL - or an error message
           - PMS system launches the URL for the user
 
-        **Step 2**: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral.\
-        **Step 3**: The user sends and/or saves the referral using the digital referrals system.
+          **Step 2**: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral.\
+          **Step 3**: The user sends and/or saves the referral using the digital referrals system.
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Referral'
             example: {}
+
   '/referral/{referralID}/status':
     parameters:
       - schema:
@@ -157,6 +159,7 @@ paths:
         description: referral ID
         in: path
         required: true
+
     get:
       summary: GET referral status
       tags: []
@@ -171,13 +174,47 @@ paths:
                 example-1:
                   value:
                     referralStatus: incomplete
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+              example:
+                Bad request response:
+                  value:
+                    referralStatus: ''
+                    errorMessage: The request was malformed and couldn't be processed
+                    errorCode:  E0001
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+              example:
+                Bad request response:
+                  value:
+                    referralStatus: ''
+                    errorMessage: The API-KEY is invalid
+                    errorCode:  E0010
         '404':
           description: Referral with given ID not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+              example:
+                Bad request response:
+                  value:
+                    referralStatus: ''
+                    errorMessage: ReferralID cannot be found by the receiving system 
+                    errorCode:  E0005
         '500':
           description: Internal Server Error
+
       operationId: get-referral-referralID-status
+
       description: >-
         ### Returns the status of the referral with the given ID
 
@@ -185,7 +222,14 @@ paths:
           - PMS system requests a status check to a specific referral ID using the same API key as for the referral
           - EeRS supplier provides response
           - PMS system exposes the URL associated with the referral from the original API call associated with that referral, so that the user can receive a prompt to complete their referral in the EeRS system without additional manual authentication.
+security:
+  - apikey: []
 components:
+  securitySchemes:
+    apikey:
+      name: API key to identify calling client
+      type: apiKey
+      in: header
   schemas:
     Referral:
       title: Referral
@@ -212,7 +256,7 @@ components:
             mobile: 07545 123456
             email: j.jones@nowhere.com
             dateOfBirth: '1997-08-11'
-          reasonForReferral: string
+          reasonForReferral: Needs assessment for cataract surgery
           guardian:
             name:
               prefix: Mr
@@ -225,7 +269,8 @@ components:
                 - Leeds
               postcode: LS15 8DT
           referrer:
-            GOCNumber: string
+            registrantType: GOCRegistrant
+            registrantNumber: 01-12345
             name:
               text: Gosia Daria
             practice:
@@ -259,8 +304,7 @@ components:
           GPAction: informationOnly
           referTo:
             adultClinic: cataract
-          clinicalTerms:
-            - string
+          clinicalTerms: [cataract]
           refraction:
             left:
               sphere: -2
@@ -310,7 +354,7 @@ components:
               averageIntraocularPressure: '12'
           cycloplegicRefraction: true
           dilatedFundusExamination: true
-          additionalInformation: string
+          additionalInformation: Patient has accessibility needs
           pmsWebhookCallback: 'http://example.com'
       description: ''
       properties:
@@ -515,7 +559,8 @@ components:
       title: Referrer
       type: object
       example:
-        - GOCNumber: string
+          registrantType: GOCRegistrant
+          registrantNumber: 01-12345
           name:
             fullName: Gosia Daria
           practice:
@@ -531,7 +576,16 @@ components:
             email: gdaria@theeyecarepracticewakefield.co.uk
             telephone: 01924 567890
       properties:
-        GOCNumber:
+        required:  # List the required properties here
+          - registrantType:
+          - registrantNumber:
+        registrantType:
+          type: string 
+          default: GOCRegistrant
+          enum:
+            - GOCRegistrant
+            - GMCRegistrant
+        registrantNumber:
           type: string
         name:
           $ref: '#/components/schemas/Name'
@@ -541,6 +595,8 @@ components:
       title: Practice
       type: object
       properties:
+        required:  # List the required properties here
+          - ODSCode:        
         ODSCode:
           type: string
         name:
@@ -652,6 +708,11 @@ components:
           description: >-
             For responses other than 201 CREATED an error message will be
             populated
+        errorCode:
+          type: string
+          description: >-
+            For responses other than 201 CREATED an error code will be
+            populated    
       example:
         - referralID: string
           referralURL: string
@@ -707,11 +768,6 @@ components:
         - in: 0.5
           down: 1
         - '1/2 BU, 1 BI'
-  securitySchemes:
-    apikey:
-      name: API key to identify calling client
-      type: apiKey
-      in: header
   responses: {}
-security:
-  - apikey: []
+ 
+
