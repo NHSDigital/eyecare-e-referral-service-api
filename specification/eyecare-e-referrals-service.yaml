@@ -9,7 +9,7 @@ x-meta:
   pipeline_name_prefix: "Eyecare-Referrals"
 info:
   title: Eyecare Referral API
-  version: '1.0'
+  version: '1.0.0'
   contact:
     url: 'https://digital.nhs.uk/developer/help-and-support'
     email: api.management@nhs.net
@@ -81,8 +81,16 @@ info:
 
     Any non-mandatory field will either be included as JSON null or not inlcuded at all from the sending Optom PMS system. When saving a new referral initialise these fields to null.
 
-    ## Onboarding
+    ## Version control
+
+    We use HTTP headers to allow you to specify the API version you want to call.
+
+    In general, once an API is stable (meaning it has exited beta) we avoid making any breaking changes. That means we might add new data fields or add new valid values to code sets, but we won't remove any mandatory fields or change the semantic meaning of any existing fields or code sets.
+
+    If we ever do need to make breaking changes to a stable API, we will continue to use HTTP headers to allow you to specify the API version you want to call. We'll do this in a backwards-compatible way.
     
+    ## Onboarding
+
     Liaise with NHSX for onboarding your service into live operation.
 
 servers:
@@ -243,7 +251,6 @@ components:
   schemas:
     Referral:
       title: Referral
-      version: 0.0.1
       type: object
       example:
         - urgent: emergencyASAP
