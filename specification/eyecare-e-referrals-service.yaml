@@ -167,7 +167,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Referral'
-            example: {}
 
   '/referral/{referralID}/status':
     parameters:
@@ -576,6 +575,9 @@ components:
     Referrer:
       title: Referrer
       type: object
+      required:  # List the required properties here
+        - registrantType
+        - registrantNumber
       example:
           registrantType: GOCRegistrant
           registrantNumber: 01-12345
@@ -594,9 +596,7 @@ components:
             email: gdaria@theeyecarepracticewakefield.co.uk
             telephone: 01924 567890
       properties:
-        required:  # List the required properties here
-          - registrantType:
-          - registrantNumber:
+
         registrantType:
           type: string 
           default: GOCRegistrant
@@ -612,9 +612,9 @@ components:
     Practice:
       title: Practice
       type: object
-      properties:
-        required:  # List the required properties here
-          - ODSCode:        
+      required:  # List the required properties here
+        - ODSCode 
+      properties:       
         ODSCode:
           type: string
         name:
