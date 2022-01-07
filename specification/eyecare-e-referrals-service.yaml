@@ -40,8 +40,9 @@ info:
     ## API status and roadmap
 
     This API standard is in [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
-      * it is available for production use
-      * we might make breaking changes, but only if we cannot avoid it, and we will give an advance notice
+      * It is available for production use
+      * We might make breaking changes, but only if we cannot avoid it, and we will give an advance notice
+      * Current Version of the API standard is 1.0.0
 
     To suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=eyecare-e-referral-api&deleted=0#controls).
 
@@ -85,7 +86,9 @@ paths:
   '/referrals':
     post:
       summary: 'POST Referrals'
-      operationId: post-referrals
+      operationId: post-referrals  
+      parameters: 
+        - $ref: '#/components/parameters/VersionHeader'
       responses:
         '201':
           description: Created
@@ -102,6 +105,12 @@ paths:
                     referralStatus: incomplete
                     errorMessage: ''
                     errorCode: ''
+          headers:
+            Accept-Version:
+              description: The Version number of the API you wish to call.
+              schema:
+                type: string
+                example: 1.0.0
         '4XX':
           description: |
             An error occurred as follows:
@@ -128,10 +137,18 @@ paths:
                     referralStatus: ''
                     errorMessage: As per description
                     errorCode: As per description
-
+          headers:
+            Accept-Version:
+              description: The Version number of the API you wish to call.
+              schema:
+                type: string
         '500':
           description: Internal Server Error
-
+          headers:
+            Accept-Version:
+              description: The Version number of the API you wish to call.
+              schema:
+                type: string
       description: >-
          ### Create a new referral in the EeRS system
 
@@ -149,7 +166,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Referral'
-
   '/referral/{referralID}/status':
     parameters:
       - schema:
@@ -158,9 +174,10 @@ paths:
         description: referral ID
         in: path
         required: true
-
     get:
       summary: GET referral status
+      parameters: 
+        - $ref: '#/components/parameters/VersionHeader'
       tags: []
       responses:
         '200':
@@ -173,6 +190,11 @@ paths:
                 example-1:
                   value:
                     referralStatus: incomplete
+          headers:
+            Accept-Version:
+              description: The Version number of the API you invoked.
+              schema:
+                type: string
         '400':
           description: Bad Request
           content:
@@ -185,6 +207,11 @@ paths:
                     referralStatus: ''
                     errorMessage: The request was malformed and couldn't be processed
                     errorCode:  E0001
+          headers:
+            Accept-Version:
+              description: The Version number of the API you invoked.
+              schema:
+                type: string
         '401':
           description: Unauthorized
           content:
@@ -197,6 +224,11 @@ paths:
                     referralStatus: ''
                     errorMessage: The API-KEY is invalid
                     errorCode:  E0010
+          headers:
+            Accept-Version:
+              description: The Version number of the API you invoked.
+              schema:
+                type: string
         '404':
           description: Referral with given ID not found
           content:
@@ -208,9 +240,19 @@ paths:
                   value:
                     referralStatus: ''
                     errorMessage: ReferralID cannot be found by the receiving system 
-                    errorCode:  E0005
+                    errorCode:  E0005        
+          headers:
+            Accept-Version:
+              description: The Version number of the API you invoked.
+              schema:
+                type: string
         '500':
-          description: Internal Server Error
+          description: Internal Server Error        
+          headers:
+            Accept-Version:
+              description: The Version number of the API you invoked.
+              schema:
+                type: string
 
       operationId: get-referral-referralID-status
 
@@ -226,9 +268,17 @@ security:
 components:
   securitySchemes:
     apikey:
-      name: API key to identify calling client
       type: apiKey
       in: header
+      name: Authorisation
+  parameters:
+    VersionHeader:
+      name: Accept-Version
+      description:  The Version number of the API you invoked.
+      in: header
+      schema:
+        type: string
+        example: 1.0.0
   schemas:
     Referral:
       title: Referral
