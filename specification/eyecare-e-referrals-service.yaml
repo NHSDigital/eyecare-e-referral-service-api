@@ -32,22 +32,47 @@ info:
     - transfer key clinical, patient and practitioner information associated with making a referral to NHS health services via an EeRS
     - auto-populate GOS18 and associated referral data from the Optometry PMS
 
+    ### Building the API standard into an Optometry PMS
+    
+    Use the following steps to implement the API as a sending Optometry PMS to a specific EeRS:
+
+    1. Identify the data fields in your system that correspond to the data fields in the specification.
+    2. Ask the EeRS supplier to provide their API endpoint.
+    3. Ask the EeRS supplier you are integrating with to provide a system-to-system API key. 
+    4. Develop your system to connect to the API and send the API key with the data payload to that EeRS endpoint. 
+    5. Design a way of initiating the referral process from the Optometry PMS – ideally using a “refer via EeRS” button in the right part of the workflow in your PMS system
+    6. Test that referral process is working from your Optomotry PMS to the endpoint with the EeRS, and check with a clinician that the right data fields are coming across inside the EeRS system. 
 
     ## Who can use this API
 
-    This API standard can be used by any Optometry PMS to allow an Optometrist to send a referral into a specific EeRS system. Integrated Care Systems require each Optometry system in use in their area to link to their specific EeRS system.
+    This API standard can be provided by any EeRS as procured regionally.  It can be used by any Optometry PMS to allow an Optometrist to send a referral into a specific EeRS system. Integrated Care Systems may require each Optometry system in use in their area to link to their specific EeRS system.
 
+    ### Optom PMS sender guidance
+
+    Use JSON NULL to represent an empty field you wish to include instead of emptry string.
+
+    ### EeRS provider guidance
+
+    Any non-mandatory field will either be included as JSON null or not inlcuded at all from the sending Optom PMS system. When saving a new referral initialise these fields to null.
+    
     ## API status and roadmap
 
     This API standard is in [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
-      * It is available for production use
-      * We might make breaking changes, but only if we cannot avoid it, and we will give an advance notice
-      * Current Version of the API standard is 1.0.0
-
+      * it is available for production use
+      * we might make breaking changes, but only if we cannot avoid it, and we will give an advance notice
+    
     To suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=eyecare-e-referral-api&deleted=0#controls).
 
     If you have any other queries, please contact us at bookingandreferrals@nhs.net.
+    
+    ### Version control
 
+    We use HTTP headers to allow you to specify the API version you want to call.
+
+    In general, once an API is stable (meaning it has exited beta) we avoid making any breaking changes. That means we might add new data fields or add new valid values to code sets, but we won't remove any mandatory fields or change the semantic meaning of any existing fields or code sets.
+
+    If we ever do need to make breaking changes to a stable API, we will continue to use HTTP headers to allow you to specify the API version you want to call. We'll do this in a backwards-compatible way.
+    
     ## Technology
 
     This API standard uses HTTP POST to submit data.
@@ -61,38 +86,9 @@ info:
     Each EeRS endpoint must be secured via an API key included in the HTTP header. Note that we recommend the use of an 128-bit API key as a minimum.
     Liaise with the EeRS supplier you are integrating with, to get an API key for their endpoint configuration.
 
-    ## Building the API standard into an Optometry PMS
-    
-    Use the following steps to implement the API as a sending Optometry PMS to a specific EeRS:
-
-    1. Identify the data fields in your system that correspond to the data fields in the specification.
-    2. Ask the EeRS supplier to provide their API endpoint.
-    3. Ask the EeRS supplier you are integrating with to provide a system-to-system API key. 
-    4. Develop your system to connect to the API and send the API key with the data payload to that EeRS endpoint. 
-    5. Design a way of initiating the referral process from the Optometry PMS – ideally using a “refer via EeRS” button in the right part of the workflow in your PMS system
-    6. Test that referral process is working from your Optomotry PMS to the endpoint with the EeRS, and check with a clinician that the right data fields are coming across inside the EeRS system. 
-
-    ## Developer notes
-
-    ### Optom PMS Developer
-
-    Use JSON NULL to represent an empty field you wish to include instead of emptry string.
-
-    ### EeRS Developer
-
-    Any non-mandatory field will either be included as JSON null or not inlcuded at all from the sending Optom PMS system. When saving a new referral initialise these fields to null.
-
-    ## Version control
-
-    We use HTTP headers to allow you to specify the API version you want to call.
-
-    In general, once an API is stable (meaning it has exited beta) we avoid making any breaking changes. That means we might add new data fields or add new valid values to code sets, but we won't remove any mandatory fields or change the semantic meaning of any existing fields or code sets.
-
-    If we ever do need to make breaking changes to a stable API, we will continue to use HTTP headers to allow you to specify the API version you want to call. We'll do this in a backwards-compatible way.
-    
     ## Onboarding
 
-    Liaise with NHSX for onboarding your service into live operation.
+    Liaise with NHSX for onboarding your service into live operation. Please contact NHSX [here](https://www.nhsx.nhs.uk/contact-us/).
 
 servers:
   # Added by API Auto Mocking Plugin
@@ -103,10 +99,11 @@ servers:
 paths:
   '/referrals':
     post:
-      summary: 'POST Referrals'
+      summary: 'POST referrals'
       operationId: post-referrals  
       parameters: 
         - $ref: '#/components/parameters/VersionHeader'
+        - $ref: '#/components/parameters/Authorization'
       responses:
         '201':
           description: Created
@@ -168,17 +165,21 @@ paths:
               schema:
                 type: string
       description: >-
-         ### Create a new referral in the EeRS system
+         
+         ### Create a new referral in the EeRS
 
-          **Step 1**: Clinician decides to launch a referral and clicks “refer via EeRS” or similar on the PMS system
-          - PMS system gathers the data payload to send via the API
-          - PMS system identifies the EeRS supplier API to call based on the optom practice where the practitioner has clicked ‘launch EeRS referral’
-          - PMS system initiates API by sending API key to the digital referrals (EeRS) supplier in question with the data payload
-          - Digital referrals supplier provides a response 201 with a URL - or an error message
-          - PMS system launches the URL for the user
+          **Step 1**: The cinician user decides to create a referral and clicks “refer via EeRS” or similar on the PMS system
+          **Step 2**: PMS system gathers the data payload to send via the API
+          **Step 3**: PMS system identifies the EeRS supplier API to call based on the optom practice where the practitioner has clicked ‘create EeRS referral’
+          **Step 4**: PMS system initiates API by sending API key to the EeRS in question with the data payload
+          **Step 5**: EeRS provides a response 201 with a URL - or an error message
+          
+         ### Complete the referral in the EeRS 
 
-          **Step 2**: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral.\
-          **Step 3**: The user sends and/or saves the referral using the digital referrals system.
+          **Step 1**: PMS system launches the URL for the user in a browser
+          **Step 2**: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral.
+          **Step 3**: The user sends and/or saves the referral using the EeRS.
+
       requestBody:
         content:
           application/json:
@@ -196,6 +197,7 @@ paths:
       summary: GET referral status
       parameters: 
         - $ref: '#/components/parameters/VersionHeader'
+        - $ref: '#/components/parameters/Authorization'
       tags: []
       responses:
         '200':
@@ -278,9 +280,9 @@ paths:
         ### Returns the status of the referral with the given ID
 
         A status update can be initiated by a clinician or admin, or set to be initiated automatically for all referrals as desired.
-          - PMS system requests a status check to a specific referral ID using the same API key as for the referral
-          - EeRS supplier provides response
-          - PMS system exposes the URL associated with the referral from the original API call associated with that referral, so that the user can receive a prompt to complete their referral in the EeRS system without additional manual authentication.
+          **Step 1**: PMS system requests a status check to a specific referral ID using the same API key as for the referral
+          **Step 2**: EeRS supplier provides response 200 with the status - or an error message
+          
 security:
   - apikey: []
 components:
@@ -292,11 +294,18 @@ components:
   parameters:
     VersionHeader:
       name: Accept-Version
-      description:  The Version number of the API you invoked.
+      description:  The version number of the API you invoked.
       in: header
       schema:
         type: string
         example: 1.0.0
+    Authorization:
+      name: Authorization
+      description:  The API Key associated with the calling API consumer.
+      in: header
+      schema:
+        type: string
+        example: KdsASD78FA5Sjl342kfwreas
   schemas:
     Referral:
       title: Referral
