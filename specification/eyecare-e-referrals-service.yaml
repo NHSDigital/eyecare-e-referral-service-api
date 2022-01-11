@@ -134,11 +134,11 @@ paths:
             | ----------- |----------------------------------------------------------- |-------------- | ------------------------------------------------------- |
             | 400         | Malformed JSON                                             | E0001         | JSON could not be parsed for processing. It is invalid. |
             | 400         | Empty JSON body                                            | E0002         | No JSON was received in the request body.               |
-            | 400         | A null value was submitted in one or more required fields.  The fields are [insert field list]. | E0002     | No JSON was received in the request body. | 
+            | 400         | A null value was submitted in one or more required fields.  The fields are [insert field list]. | E0008     | No JSON was received in the request body. | 
             | 401         | Authentication failed                                      | E0010         | Either the API-KEY is invalid or the values in the ODS and GOCNumber fields failed authentication. |
             | 422         | ODS Code Invalid                                           | E0006         | ODS Code supplied not matched in EeRS system               |
             | 422         | GOC Number Invalid                                         | E0007         | The value supplied in the GOCNumber field is not valid as defined by the EeRS                      |
-            | 422         | A data type could not be converted                         | E0008         | This error is used when the conversion to the target data type cannot be made.                      |
+            | 422         | A data type could not be converted                         | E0009         | This error is used when the conversion to the target data type cannot be made.                      |
       
           content:
             application/json:
