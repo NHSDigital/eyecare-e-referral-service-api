@@ -49,11 +49,13 @@ info:
 
     ### Optom PMS sender guidance
 
-    Use JSON NULL to represent an empty field you wish to include instead of emptry string.
+    If there is no value in your Optom PMS for a non-mandatory nullable field then you can either:
+      - exlcude that field from the JSON; or
+      - use JSON NULL to represent an empty field rather than empty string. 
 
     ### EeRS provider guidance
 
-    Any non-mandatory field will either be included as JSON null or not inlcuded at all from the sending Optom PMS system. When saving a new referral initialise these fields to null.
+    Any non-mandatory field will either be included as JSON null or not inlcuded at all from the sending Optom PMS system. When saving a new referral initialise these fields to null in your system.
     
     ## API status and roadmap
 
@@ -118,8 +120,8 @@ paths:
                     referralURL: >-
                       https://someEeRSSystem/referrals/123e4567-e89b-12d3-a456-426614174000
                     referralStatus: incomplete
-                    errorMessage: ''
-                    errorCode: ''
+                    errorMessage: null
+                    errorCode: null
           headers:
             Accept-Version:
               description: The Version number of the API you wish to call.
@@ -147,9 +149,9 @@ paths:
               example:
                 Bad request response:
                   value:
-                    referralID: ''
-                    referralURL: ''
-                    referralStatus: ''
+                    referralID: null
+                    referralURL: null
+                    referralStatus: null
                     errorMessage: As per description
                     errorCode: As per description
           headers:
@@ -169,15 +171,21 @@ paths:
          ### Create a new referral in the EeRS
 
           **Step 1**: The cinician user decides to create a referral and clicks “refer via EeRS” or similar on the PMS system
+
           **Step 2**: PMS system gathers the data payload to send via the API
+          
           **Step 3**: PMS system identifies the EeRS supplier API to call based on the optom practice where the practitioner has clicked ‘create EeRS referral’
+          
           **Step 4**: PMS system initiates API by sending API key to the EeRS in question with the data payload
+          
           **Step 5**: EeRS provides a response 201 with a URL - or an error message
           
          ### Complete the referral in the EeRS 
 
           **Step 1**: PMS system launches the URL for the user in a browser
+          
           **Step 2**: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral.
+          
           **Step 3**: The user sends and/or saves the referral using the EeRS.
 
       requestBody:
@@ -224,7 +232,7 @@ paths:
               example:
                 Bad request response:
                   value:
-                    referralStatus: ''
+                    referralStatus: null
                     errorMessage: The request was malformed and couldn't be processed
                     errorCode:  E0001
           headers:
@@ -241,7 +249,7 @@ paths:
               example:
                 Bad request response:
                   value:
-                    referralStatus: ''
+                    referralStatus: null
                     errorMessage: The API-KEY is invalid
                     errorCode:  E0010
           headers:
@@ -258,7 +266,7 @@ paths:
               example:
                 Bad request response:
                   value:
-                    referralStatus: ''
+                    referralStatus: null
                     errorMessage: ReferralID cannot be found by the receiving system 
                     errorCode:  E0005        
           headers:
@@ -290,7 +298,7 @@ components:
     apikey:
       type: apiKey
       in: header
-      name: Authorisation
+      name: api-key
   parameters:
     VersionHeader:
       name: Accept-Version
@@ -300,7 +308,7 @@ components:
         type: string
         example: 1.0.0
     Authorization:
-      name: Authorization
+      name: api-key
       description:  The API Key associated with the calling API consumer.
       in: header
       schema:
@@ -320,7 +328,7 @@ components:
               prefix: Mrs
               given: Jane
               family: Jones
-              fullName: ''
+              fullName: null
             gender: female
             address:
               line:
@@ -338,7 +346,7 @@ components:
               prefix: Mr
               given: Harry
               family: Jones
-              fullName: ''
+              fullName: null
             address:
               line:
                 - 1 Station Road
@@ -366,7 +374,7 @@ components:
               prefix: Mr
               given: Harry
               family: Jones
-              fullName: ''
+              fullName: null
             practice:
               ODSCode: G7A9I
               name: The Practice
@@ -530,7 +538,7 @@ components:
           type: string
         pmsWebhookCallback:
           type: string
-          description: Placeholder for future callback API
+          description: Placeholder for callback API
           format: uri
     Patient:
       title: Patient
@@ -541,7 +549,7 @@ components:
             prefix: Mrs
             given: Jane
             family: Jones
-            fullName: ''
+            fullName: null
           gender: female
           address:
             line:
@@ -609,14 +617,14 @@ components:
         - prefix: Mr
           given: Harry
           family: Jones
-          fullName: ''
+          fullName: null
         - prefix: Dr
           given: F
           family: Jones
           fullName: Dr F Jones
-        - prefix: ''
-          given: ''
-          family: ''
+        - prefix: null
+          given: null
+          family: null
           fullName: Jane Jones
       description: >-
         Represents a person's name. Provides the option to include the name
