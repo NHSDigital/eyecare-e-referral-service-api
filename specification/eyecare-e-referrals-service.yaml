@@ -40,8 +40,8 @@ info:
     2. Ask the EeRS supplier to provide their API endpoint.
     3. Ask the EeRS supplier you are integrating with to provide a system-to-system API key. 
     4. Develop your system to connect to the API and send the API key with the data payload to that EeRS endpoint. 
-    5. Design a way of initiating the referral process from the Optometry PMS – ideally using a “refer via EeRS” button in the correct part of the workflow in your PMS system
-    6. Test that referral process is working from your Optomotry PMS to the endpoint with the EeRS, and check with a clinician that the correct data fields are coming across inside the EeRS system. 
+    5. Design a way of initiating the referral process from the Optometry PMS – ideally using a “refer via EeRS” button in the right part of the workflow in your PMS system
+    6. Test that referral process is working from your Optomotry PMS to the endpoint with the EeRS, and check with a clinician that the right data fields are coming across inside the EeRS system. 
 
     ## Who can use this API
 
@@ -161,11 +161,6 @@ paths:
                 type: string
         '500':
           description: Internal Server Error
-          headers:
-            Accept-Version:
-              description: The Version number of the API you wish to call.
-              schema:
-                type: string
       description: >-
          
          ### Create a new referral in the EeRS
@@ -276,11 +271,6 @@ paths:
                 type: string
         '500':
           description: Internal Server Error        
-          headers:
-            Accept-Version:
-              description: The Version number of the API you invoked.
-              schema:
-                type: string
 
       operationId: get-referral-referralID-status
 
@@ -288,7 +278,9 @@ paths:
         ### Returns the status of the referral with the given ID
 
         A status update can be initiated by a clinician or admin, or set to be initiated automatically for all referrals as desired.
+
           **Step 1**: PMS system requests a status check to a specific referral ID using the same API key as for the referral
+
           **Step 2**: EeRS supplier provides response 200 with the status - or an error message
           
 security:
