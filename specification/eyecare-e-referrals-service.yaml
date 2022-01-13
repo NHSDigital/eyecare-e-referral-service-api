@@ -18,8 +18,7 @@ info:
 
     Use this API standard to pass details of a new referral from an Optometry Patient Management System (Optometry PMS) to an Eyecare electronic Referral system (EeRS).
     
-    The API standard supports sending key referral data from the Optomoetry PMS. This is important for engaging optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
-    The information in the standard includes the clinical, patient and practitioner information for a referral to NHS health services to an EeRS, including the GOS18 information.
+    The API standard supports sending key referral information (including the GOS18 data items) from an optometrist to NHS services via an EeRS. This is important for engaging optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
 
     Each NHS region will procure an EeRS system from the [Dynamic Purchasing System (DPS) for Electronic Eyecare Referral Systems (EeRS)](https://www.nhsx.nhs.uk/key-tools-and-info/procurement-frameworks/dynamic-purchasing-system-electronic-eyecare-referral-systems/). 
     Each EeRS system receives referrals using this API standard and provides its own endpoint for this service.
@@ -150,8 +149,8 @@ paths:
                     referralID: null
                     referralURL: null
                     referralStatus: null
-                    errorMessage: As per description
-                    errorCode: As per description
+                    errorMessage: As per text in table
+                    errorCode: As per text in table
           headers:
             Accept-Version:
               description: The Version number of the API you wish to call.
