@@ -111,14 +111,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
               example:
-                example-1:
-                  value:
-                    referralID: 123e4567-e89b-12d3-a456-426614174000
-                    referralURL: >-
-                      https://someEeRSSystem/referrals/123e4567-e89b-12d3-a456-426614174000
-                    referralStatus: incomplete
-                    errorMessage: null
-                    errorCode: null
+                referralID: 123e4567-e89b-12d3-a456-426614174000
+                referralURL: >-
+                  https://someEeRSSystem/referrals/123e4567-e89b-12d3-a456-426614174000
+                referralStatus: incomplete
+                errorMessage: null
+                errorCode: null
           headers:
             Accept-Version:
               description: The Version number of the API you wish to call.
@@ -207,9 +205,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusResponse'
               example:
-                example-1:
-                  value:
-                    referralStatus: incomplete
+                referralStatus: incomplete
           headers:
             Accept-Version:
               description: The Version number of the API you invoked.
@@ -278,8 +274,7 @@ paths:
 
           **Step 1**: PMS system requests a status check to a specific referral ID using the same API key as for the referral
 
-          **Step 2**: EeRS supplier provides response 200 with the status - or an error message
-          
+          **Step 2**: EeRS supplier provides response 200 with the status - or an error message          
 security:
   - apikey: []
 components:
@@ -814,20 +809,24 @@ components:
             - incomplete
             - submitted
             - closednotsubmitted
+            - printed
       description: >-
         Shows the current status of the referral which will be one of:
         
-        **incomplete** - the referral has been received in the EeRS system but has
+        * **incomplete** - the referral has been received in the EeRS system but has
         not yet not been closed or submitted.
 
-        **submitted** - the referral has been submitted to a provider of onwards care.
+        * **submitted** - the referral has been submitted to a provider of onwards care.
         
-        **closednotsubmitted** - the referral has been closed by the user without being submitted for any further review or action by service providers
+        * **closednotsubmitted** - the referral has been closed by the user without being submitted for any further review or action by service providers
         e.g. because a clinician decided that a referral wasn't necessary.
+
+        * **printed** - the referral was entered manually.
       example:
         - referralStatus: incomplete
         - referralStatus: submitted
         - referralStatus: closednotsubmitted
+        - referralStatus: printed
     Prism:
       title: Prism
       oneOf:
