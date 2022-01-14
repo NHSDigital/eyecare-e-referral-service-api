@@ -133,9 +133,9 @@ paths:
             | 400         | Empty JSON body                                            | E0002         | No JSON was received in the request body.               |
             | 400         | A null value was submitted in one or more required fields.  The fields are [insert field list]. | E0008     | No value was submitted in a mandatory field. | 
             | 401         | Authentication failed                                      | E0010         | Either the API-KEY is invalid or the values in the ODS and GOCNumber fields failed authentication. |
-            | 422         | ODS Code Invalid                                           | E0006         | ODS Code supplied not matched in EeRS system               |
-            | 422         | GOC Number Invalid                                         | E0007         | The value supplied in the GOCNumber field is not valid as defined by the EeRS                      |
-            | 422         | A data type could not be converted                         | E0009         | This error is used when the conversion to the target data type cannot be made.                      |
+            | 422         | ODS Code Invalid                                           | E0006         | ODS Code supplied not matched in EeRS system.For example, the formatting may not be valid, or it may not have matched a record in the register of ODSCodes held in the receiving system. |
+            | 422         | Registrant Number invalid                                  | E0007         | The value supplied in the RegistrantNumber field is not valid as defined by the receiving system. For example, the formatting may not be valid, or it may not have matched a record in the register of GOC and GMC numbers held in the receiving system. |
+            | 422         | A data type could not be converted                         | E0009         | This error is used when the conversion to the target data type cannot be made. |
       
           content:
             application/json:
