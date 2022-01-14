@@ -111,14 +111,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
               example:
-                example-1:
-                  value:
-                    referralID: 123e4567-e89b-12d3-a456-426614174000
-                    referralURL: >-
-                      https://someEeRSSystem/referrals/123e4567-e89b-12d3-a456-426614174000
-                    referralStatus: incomplete
-                    errorMessage: null
-                    errorCode: null
+                referralID: 123e4567-e89b-12d3-a456-426614174000
+                referralURL: >-
+                  https://someEeRSSystem/referrals/123e4567-e89b-12d3-a456-426614174000
+                referralStatus: incomplete
+                errorMessage: null
+                errorCode: null
           headers:
             Accept-Version:
               description: The Version number of the API you wish to call.
@@ -135,9 +133,9 @@ paths:
             | 400         | Empty JSON body                                            | E0002         | No JSON was received in the request body.               |
             | 400         | A null value was submitted in one or more required fields.  The fields are [insert field list]. | E0008     | No value was submitted in a mandatory field. | 
             | 401         | Authentication failed                                      | E0010         | Either the API-KEY is invalid or the values in the ODS and GOCNumber fields failed authentication. |
-            | 422         | ODS Code Invalid                                           | E0006         | ODS Code supplied not matched in EeRS system               |
-            | 422         | GOC Number Invalid                                         | E0007         | The value supplied in the GOCNumber field is not valid as defined by the EeRS                      |
-            | 422         | A data type could not be converted                         | E0009         | This error is used when the conversion to the target data type cannot be made.                      |
+            | 422         | ODS Code Invalid                                           | E0006         | ODS Code supplied not matched in EeRS system.For example, the formatting may not be valid, or it may not have matched a record in the register of ODSCodes held in the receiving system. |
+            | 422         | Registrant Number invalid                                  | E0007         | The value supplied in the RegistrantNumber field is not valid as defined by the receiving system. For example, the formatting may not be valid, or it may not have matched a record in the register of GOC and GMC numbers held in the receiving system. |
+            | 422         | A data type could not be converted                         | E0009         | This error is used when the conversion to the target data type cannot be made. |
       
           content:
             application/json:
@@ -207,9 +205,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusResponse'
               example:
-                example-1:
-                  value:
-                    referralStatus: incomplete
+                referralStatus: incomplete
           headers:
             Accept-Version:
               description: The Version number of the API you invoked.
@@ -278,8 +274,7 @@ paths:
 
           **Step 1**: PMS system requests a status check to a specific referral ID using the same API key as for the referral
 
-          **Step 2**: EeRS supplier provides response 200 with the status - or an error message
-          
+          **Step 2**: EeRS supplier provides response 200 with the status - or an error message          
 security:
   - apikey: []
 components:
@@ -814,20 +809,24 @@ components:
             - incomplete
             - submitted
             - closednotsubmitted
+            - printed
       description: >-
         Shows the current status of the referral which will be one of:
         
-        **incomplete** - the referral has been received in the EeRS system but has
+        * **incomplete** - the referral has been received in the EeRS system but has
         not yet not been closed or submitted.
 
-        **submitted** - the referral has been submitted to a provider of onwards care.
+        * **submitted** - the referral has been submitted to a provider of onwards care.
         
-        **closednotsubmitted** - the referral has been closed by the user without being submitted for any further review or action by service providers
+        * **closednotsubmitted** - the referral has been closed by the user without being submitted for any further review or action by service providers
         e.g. because a clinician decided that a referral wasn't necessary.
+
+        * **printed** - the referral was entered manually.
       example:
         - referralStatus: incomplete
         - referralStatus: submitted
         - referralStatus: closednotsubmitted
+        - referralStatus: printed
     Prism:
       title: Prism
       oneOf:
