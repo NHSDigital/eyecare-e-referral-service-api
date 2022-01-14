@@ -58,7 +58,7 @@ info:
     
     To suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=eyecare-e-referral-api&deleted=0#controls).
 
-    If you have any other queries, please contact us at mailto:bookingandreferrals@nhs.net.
+    If you have any other queries, please contact us at [bookingandreferrals@nhs.net](mailto:bookingandreferrals@nhs.net).
     
     ### Version control
 
@@ -87,7 +87,7 @@ info:
 
     ## Onboarding
 
-    Liaise with NHSX for onboarding your service into live operation. Please contact NHSX at mailto:digital.podac@nhsx.nhs.uk.
+    Liaise with NHSX for onboarding your service into live operation. Please contact NHSX at [digital.podac@nhsx.nhs.uk](mailto:digital.podac@nhsx.nhs.uk).
 
 servers:
   # Added by API Auto Mocking Plugin
