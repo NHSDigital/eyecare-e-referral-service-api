@@ -1,14 +1,14 @@
 openapi: 3.0.0
 x-nhs-api-spec-guid: bf6758a5-b731-4640-876a-f7ad56e36029
 x-meta:
-  service_name: "eyecare-e-referrals-service"
+  service_name: "eyecare-electronic-referrals-service"
   short_service_name: "eye"
   product_display_name: "Eyecare Referral API"
   service_base_path: "eyecare-referrals"
-  product_description: "A simple API to allow details of a new referral to be passed to an Eyecare e-referral system (EeRS) from an Optometry patient management system."
+  product_description: "A simple API to allow details of a new referral to be passed to an Eyecare electroinc referral system (EeRS) from an Optometry patient management system."
   pipeline_name_prefix: "Eyecare-Referrals"
 info:
-  title: Eyecare Referral API
+  title: Eyecare electronic Referral API
   version: '1.0.0'
   contact:
     url: 'https://digital.nhs.uk/developer/help-and-support'
@@ -16,25 +16,18 @@ info:
   description: |
     ## Overview
 
-    Use this API standard to pass details of a new referral from an Optometry Patient Management System (Optometry PMS) to an Eyecare e-referral system (EeRS).
+    Use this API standard to pass details of a new referral from an Optometry Patient Management System (Optometry PMS) to an Eyecare electronic Referral system (EeRS).
     
-    The goal of the API standard is to pre-populate clinical, user and patient information from an Optometry PMS to an EeRS. 
+    The API standard supports sending key referral information (including the GOS18 data items) from an optometrist to NHS services via an EeRS. This is important for engaging optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
 
-    The API standard supports auto-population of GOS18 and associated referral data from the Optomoetry PMS. This is important for engaging optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
-    
     Each NHS region will procure an EeRS system from the [Dynamic Purchasing System (DPS) for Electronic Eyecare Referral Systems (EeRS)](https://www.nhsx.nhs.uk/key-tools-and-info/procurement-frameworks/dynamic-purchasing-system-electronic-eyecare-referral-systems/). 
     Each EeRS system receives referrals using this API standard and provides its own endpoint for this service.
     
     This API standard is a published specification only. Therefore you, as an Optometry PMS developer, implement and integrate it directly with each EeRS, not via our services. Therefore, the sending Optometry PMS system needs to link to each EeRS eyecare e-referral endpoint that conforms to the API standard.  
-    The details on the EeRS suppliers and their endpoints is here [insert link to NHSX site here] 
     
-    You can:
-    - transfer key clinical, patient and practitioner information associated with making a referral to NHS health services via an EeRS
-    - auto-populate GOS18 and associated referral data from the Optometry PMS
-
     ### Building the API standard into an Optometry PMS
     
-    Use the following steps to implement the API as a sending Optometry PMS to a specific EeRS:
+    Use the following steps to implement the API standard as a sending Optometry PMS to a specific EeRS:
 
     1. Identify the data fields in your system that correspond to the data fields in the specification.
     2. Ask the EeRS supplier to provide their API endpoint.
@@ -43,29 +36,29 @@ info:
     5. Design a way of initiating the referral process from the Optometry PMS – ideally using a “refer via EeRS” button in the right part of the workflow in your PMS system
     6. Test that referral process is working from your Optomotry PMS to the endpoint with the EeRS, and check with a clinician that the right data fields are coming across inside the EeRS system. 
 
+    #### Optometry PMS sender guidance
+
+    If there is no value in your Optometry PMS for a non-mandatory nullable field do either one of the following:
+      - exlcude that field from the JSON
+      - use JSON NULL to represent an empty field rather than empty string. 
+
+    #### EeRS provider guidance
+
+    Any non-mandatory field will either be included as JSON null or not included at all from the sending Optometry PMS system. When saving a new referral initialise these fields to null in your system.
+
     ## Who can use this API
 
     This API standard can be provided by any EeRS as procured regionally.  It can be used by any Optometry PMS to allow an Optometrist to send a referral into a specific EeRS system. Integrated Care Systems may require each Optometry system in use in their area to link to their specific EeRS system.
-
-    ### Optom PMS sender guidance
-
-    If there is no value in your Optom PMS for a non-mandatory nullable field then you can either:
-      - exlcude that field from the JSON; or
-      - use JSON NULL to represent an empty field rather than empty string. 
-
-    ### EeRS provider guidance
-
-    Any non-mandatory field will either be included as JSON null or not inlcuded at all from the sending Optom PMS system. When saving a new referral initialise these fields to null in your system.
     
     ## API status and roadmap
 
-    This API standard is in [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
+    This API standard is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
       * it is available for production use
       * we might make breaking changes, but only if we cannot avoid it, and we will give an advance notice
     
     To suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=eyecare-e-referral-api&deleted=0#controls).
 
-    If you have any other queries, please contact us at bookingandreferrals@nhs.net.
+    If you have any other queries, please contact us at mailto:bookingandreferrals@nhs.net.
     
     ### Version control
 
@@ -74,10 +67,12 @@ info:
     In general, once an API is stable (meaning it has exited beta) we avoid making any breaking changes. That means we might add new data fields or add new valid values to code sets, but we won't remove any mandatory fields or change the semantic meaning of any existing fields or code sets.
 
     If we ever do need to make breaking changes to a stable API, we will continue to use HTTP headers to allow you to specify the API version you want to call. We'll do this in a backwards-compatible way.
-    
+
+    This spec version:            1.0.0
+
     ## Technology
 
-    This API standard uses HTTP POST to submit data.
+    This API standard uses RESTful technology, as described in our guidance [here](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest).
     
     ## Network access
     
@@ -85,12 +80,14 @@ info:
 
     ## Security and authorisation
     
+    All communications must be encrypted using HTTP(S).
+
     Each EeRS endpoint must be secured via an API key included in the HTTP header. Note that we recommend the use of an 128-bit API key as a minimum.
     Liaise with the EeRS supplier you are integrating with, to get an API key for their endpoint configuration.
 
     ## Onboarding
 
-    Liaise with NHSX for onboarding your service into live operation. Please contact NHSX [here](https://www.nhsx.nhs.uk/contact-us/).
+    Liaise with NHSX for onboarding your service into live operation. Please contact NHSX at mailto:digital.podac@nhsx.nhs.uk.
 
 servers:
   # Added by API Auto Mocking Plugin
@@ -136,7 +133,7 @@ paths:
             | ----------- |----------------------------------------------------------- |-------------- | ------------------------------------------------------- |
             | 400         | Malformed JSON                                             | E0001         | JSON could not be parsed for processing. It is invalid. |
             | 400         | Empty JSON body                                            | E0002         | No JSON was received in the request body.               |
-            | 400         | A null value was submitted in one or more required fields.  The fields are [insert field list]. | E0008     | No JSON was received in the request body. | 
+            | 400         | A null value was submitted in one or more required fields.  The fields are [insert field list]. | E0008     | No value was submitted in a mandatory field. | 
             | 401         | Authentication failed                                      | E0010         | Either the API-KEY is invalid or the values in the ODS and GOCNumber fields failed authentication. |
             | 422         | ODS Code Invalid                                           | E0006         | ODS Code supplied not matched in EeRS system               |
             | 422         | GOC Number Invalid                                         | E0007         | The value supplied in the GOCNumber field is not valid as defined by the EeRS                      |
@@ -152,8 +149,8 @@ paths:
                     referralID: null
                     referralURL: null
                     referralStatus: null
-                    errorMessage: As per description
-                    errorCode: As per description
+                    errorMessage: As per text in table
+                    errorCode: As per text in table
           headers:
             Accept-Version:
               description: The Version number of the API you wish to call.
@@ -165,23 +162,23 @@ paths:
          
          ### Create a new referral in the EeRS
 
-          **Step 1**: The cinician user decides to create a referral and clicks “refer via EeRS” or similar on the PMS system
+          **Step 1**: The cinician user decides to create a referral and clicks “refer via EeRS” or similar on the Optometry PMS system
 
-          **Step 2**: PMS system gathers the data payload to send via the API
+          **Step 2**: Optometry PMS gathers the data payload to send via the API
           
-          **Step 3**: PMS system identifies the EeRS supplier API to call based on the optom practice where the practitioner has clicked ‘create EeRS referral’
+          **Step 3**: Optometry PMS identifies the EeRS supplier API to call based on the optometry practice where the practitioner has clicked ‘create EeRS referral’
           
-          **Step 4**: PMS system initiates API by sending API key to the EeRS in question with the data payload
+          **Step 4**: Optometry PMS initiates API by sending API key to the EeRS in question with the data payload
           
           **Step 5**: EeRS provides a response 201 with a URL - or an error message
           
          ### Complete the referral in the EeRS 
 
-          **Step 1**: PMS system launches the URL for the user in a browser
+          **Step 1**: Optometry PMS launches the URL for the user in a browser
           
-          **Step 2**: The user can now see the data rendered in the digital referrals system on their browser, and can complete the referral.
+          **Step 2**: The user can now see the data rendered in the EeRS, and can complete the referral.
           
-          **Step 3**: The user sends and/or saves the referral using the EeRS.
+          **Step 3**: The user completes the referral using the EeRS.
 
       requestBody:
         content:
@@ -348,7 +345,10 @@ components:
             registrantType: GOCRegistrant
             registrantNumber: 01-12345
             name:
-              text: Gosia Daria
+              prefix : null
+              given : Gosia
+              family : Daria
+              fullName : Gosia Daria
             practice:
               ODSCode: G7H8J
               name: The Eyecare Practice
@@ -641,7 +641,10 @@ components:
           registrantType: GOCRegistrant
           registrantNumber: 01-12345
           name:
-            fullName: Gosia Daria
+            prefix : null
+            given : Gosia
+            family : Daria
+            fullName : Gosia Daria
           practice:
             ODSCode: G7H8J
             name: The Eyecare Practice
