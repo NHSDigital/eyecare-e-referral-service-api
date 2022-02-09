@@ -5,7 +5,7 @@ x-meta:
   short_service_name: "eye"
   product_display_name: "Eyecare Referral API"
   service_base_path: "eyecare-referrals"
-  product_description: "A simple API to allow details of a new referral to be passed to an Eyecare electroinc referral system (EeRS) from an Optometry patient management system."
+  product_description: "A simple API to allow details of a new eyecare referral to be passed to an Eyecare electroinc referral system (EeRS) from an Optometry patient management system."
   pipeline_name_prefix: "Eyecare-Referrals"
 info:
   title: Eyecare electronic Referral API
@@ -16,7 +16,7 @@ info:
   description: |
     ## Overview
 
-    Use this API standard to pass details of a new referral from an Optometry Patient Management System (Optometry PMS) to an Eyecare electronic Referral system (EeRS).
+    Use this API standard to pass details of a new eyecare referral from an Optometry Patient Management System (Optometry PMS) to an Eyecare electronic Referral system (EeRS).
     
     The API standard supports sending key referral information (including the GOS18 data items) from an optometrist to NHS services via an EeRS. This is important for engaging optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
 
@@ -35,16 +35,6 @@ info:
     4. Develop your system to connect to the API and send the API key with the data payload to that EeRS endpoint. 
     5. Design a way of initiating the referral process from the Optometry PMS – ideally using a “refer via EeRS” button in the right part of the workflow in your PMS system
     6. Test that referral process is working from your Optomotry PMS to the endpoint with the EeRS, and check with a clinician that the right data fields are coming across inside the EeRS system. 
-
-    #### Optometry PMS sender guidance
-
-    If there is no value in your Optometry PMS for a non-mandatory nullable field do either one of the following:
-      - exlcude that field from the JSON
-      - use JSON NULL to represent an empty field rather than empty string. 
-
-    #### EeRS provider guidance
-
-    Any non-mandatory field will either be included as JSON null or not included at all from the sending Optometry PMS system. When saving a new referral initialise these fields to null in your system.
 
     ## Who can use this API
 
@@ -98,7 +88,7 @@ servers:
 paths:
   '/referrals':
     post:
-      summary: 'POST referrals'
+      summary: 'Create a referral'
       operationId: post-referrals  
       parameters: 
         - $ref: '#/components/parameters/VersionHeader'
@@ -115,8 +105,6 @@ paths:
                 referralURL: >-
                   https://someEeRSSystem/referrals/123e4567-e89b-12d3-a456-426614174000
                 referralStatus: incomplete
-                errorMessage: null
-                errorCode: null
           headers:
             Accept-Version:
               description: The Version number of the API you wish to call.
@@ -142,13 +130,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Response'
               example:
-                Bad request response:
-                  value:
-                    referralID: null
-                    referralURL: null
-                    referralStatus: null
-                    errorMessage: As per text in table
-                    errorCode: As per text in table
+                errorMessage: Malformed JSON
+                errorCode: E0001
           headers:
             Accept-Version:
               description: The Version number of the API you wish to call.
@@ -157,7 +140,8 @@ paths:
         '500':
           description: Internal Server Error
       description: >-
-         
+        Sends a new referral into the EeRS
+
          ### Create a new referral in the EeRS
 
           **Step 1**: The cinician user decides to create a referral and clicks “refer via EeRS” or similar on the Optometry PMS system
@@ -177,6 +161,16 @@ paths:
           **Step 2**: The user can now see the data rendered in the EeRS, and can complete the referral.
           
           **Step 3**: The user completes the referral using the EeRS.
+          
+          ### Optometry PMS sender guidance
+
+          If there is no value in your Optometry PMS for a non-mandatory nullable field do either one of the following:
+            - exclude that field from the JSON
+            - use JSON NULL to represent an empty field rather than empty string. 
+          
+          ### EeRS provider guidance
+
+          Any non-mandatory field will either be included as JSON null or not included at all from the sending Optometry PMS system. When saving a new referral initialise these fields to null in your system.
 
       requestBody:
         content:
@@ -192,7 +186,7 @@ paths:
         in: path
         required: true
     get:
-      summary: GET referral status
+      summary: Get referral status
       parameters: 
         - $ref: '#/components/parameters/VersionHeader'
         - $ref: '#/components/parameters/Authorization'
@@ -216,13 +210,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: '#/components/schemas/StatusResponse'
               example:
-                Bad request response:
-                  value:
-                    referralStatus: null
-                    errorMessage: The request was malformed and couldn't be processed
-                    errorCode:  E0001
+                errorMessage: The request was malformed and couldn't be processed
+                errorCode:  E0001
           headers:
             Accept-Version:
               description: The Version number of the API you invoked.
@@ -233,13 +224,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: '#/components/schemas/StatusResponse'
               example:
-                Bad request response:
-                  value:
-                    referralStatus: null
-                    errorMessage: The API-KEY is invalid
-                    errorCode:  E0010
+                errorMessage: The API-KEY is invalid
+                errorCode:  E0010
           headers:
             Accept-Version:
               description: The Version number of the API you invoked.
@@ -250,13 +238,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: '#/components/schemas/StatusResponse'
               example:
-                Bad request response:
-                  value:
-                    referralStatus: null
-                    errorMessage: ReferralID cannot be found by the receiving system 
-                    errorCode:  E0005        
+                errorMessage: ReferralID cannot be found by the receiving system 
+                errorCode:  E0005        
           headers:
             Accept-Version:
               description: The Version number of the API you invoked.
@@ -268,7 +253,7 @@ paths:
       operationId: get-referral-referralID-status
 
       description: >-
-        ### Returns the status of the referral with the given ID
+        Returns the status of the referral with the given ID
 
         A status update can be initiated by a clinician or admin, or set to be initiated automatically for all referrals as desired.
 
@@ -770,7 +755,7 @@ components:
           type: string
           description: >-
             The unique, system-agnostic identifier of the referral. Must be an
-            RCF 4122 compliant UUID
+            RCF 4122 compliant UUID. Only returned for a response of 201 CREATED
         referralURL:
           type: string
           description: >-
@@ -778,6 +763,8 @@ components:
             created referral. Only returned for a response of 201 CREATED
         referralStatus:
           type: string
+          description: >-
+            The status of the referral in EeRS. Only returned for a response of 201 CREATED
         errorMessage:
           type: string
           description: >-
@@ -788,17 +775,6 @@ components:
           description: >-
             For responses other than 201 CREATED an error code will be
             populated    
-      example:
-        - referralID: string
-          referralURL: string
-          referralStatus: string
-          errorMessage: string
-          errorCode: string
-        - referralID: string
-          referralURL: string
-          referralStatus: string
-          errorMessage: string
-          errorCode: string
     StatusResponse:
       title: StatusResponse
       type: object
@@ -810,23 +786,30 @@ components:
             - submitted
             - closednotsubmitted
             - printed
-      description: >-
-        Shows the current status of the referral which will be one of:
+          description: >-
+            Shows the current status of the referral which will be one of:
         
-        * **incomplete** - the referral has been received in the EeRS system but has
-        not yet not been closed or submitted.
+            * **incomplete** - the referral has been received in the EeRS system but has
+            not yet not been closed or submitted.
 
-        * **submitted** - the referral has been submitted to a provider of onwards care.
+            * **submitted** - the referral has been submitted to a provider for onward care.
         
-        * **closednotsubmitted** - the referral has been closed by the user without being submitted for any further review or action by service providers
-        e.g. because a clinician decided that a referral wasn't necessary.
+            * **closednotsubmitted** - the referral has been closed by the user without being submitted for any further review or action by service providers
+            e.g. because a clinician decided that a referral wasn't necessary.
 
-        * **printed** - the referral was entered manually.
-      example:
-        - referralStatus: incomplete
-        - referralStatus: submitted
-        - referralStatus: closednotsubmitted
-        - referralStatus: printed
+            * **printed** - the referral was entered manually.
+
+            Only populated for 200 SUCCESS response.
+        errorMessage:
+          type: string
+          description: >-
+            For responses other than 200 SUCCESS an error message will be
+            populated.
+        errorCode:
+          type: string
+          description: >-
+            For responses other than 200 SUCCESS an error code will be
+            populated.  
     Prism:
       title: Prism
       oneOf:
