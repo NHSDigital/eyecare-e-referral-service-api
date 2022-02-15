@@ -1,0 +1,227 @@
+title: Referral
+type: object
+example:
+  - urgent: emergencyASAP
+    dateOfSightTest: '2019-08-24'
+    dateOfReferral: '2019-08-24'
+    patient:
+      NHSNumber: '1234567890'
+      name:
+        prefix: Mrs
+        given: Jane
+        family: Jones
+        fullName: null
+      gender: female
+      address:
+        line:
+          - 1 The Road
+          - Wetherby
+          - North Yorkshire
+        postcode: LS10 1JR
+      telephone: 01937 123456
+      mobile: 07545 123456
+      email: j.jones@nowhere.com
+      dateOfBirth: '1997-08-11'
+    reasonForReferral: Needs assessment for cataract surgery
+    guardian:
+      name:
+        prefix: Mr
+        given: Harry
+        family: Jones
+        fullName: null
+      address:
+        line:
+          - 1 Station Road
+          - Leeds
+        postcode: LS15 8DT
+    referrer:
+      registrantType: GOCRegistrant
+      registrantNumber: 01-12345
+      name:
+        prefix : null
+        given : Gosia
+        family : Daria
+        fullName : Gosia Daria
+      practice:
+        ODSCode: G7H8J
+        name: The Eyecare Practice
+        address:
+          line:
+            - Floor 2
+            - Poppleton Court
+            - George Street
+            - Wakefield
+          postcode: WF1 1AA
+        email: gdaria@theeyecarepracticewakefield.co.uk
+        telephone: 01924 567890
+    GP:
+      name:
+        prefix: Mr
+        given: Harry
+        family: Jones
+        fullName: null
+      practice:
+        ODSCode: G7A9I
+        name: The Practice
+        address:
+          line:
+            - 1 Station Road
+            - Leeds
+          postcode: LS15 8DT
+        email: reception@theleedsexamplepractice.nhs.uk
+        telephone: 0113 212 3456
+    GPAction: informationOnly
+    referTo:
+      adultClinic: cataract
+    clinicalTerms: [cataract]
+    refraction:
+      left:
+        sphere: -2
+        cylinder: 0.75
+        axis: 70
+        nearPrism:
+          in: 1
+        distancePrism:
+          in: 1.25
+          down: 0.75
+        VA: 6/5
+        pinhole: 6/6
+        add: 1.75
+        nearVision: n5
+        previousCorrectedVA: 6/9-3
+        previousCorrectedVADate: '2019-08-24'
+        unaidedVision: 6/18-2
+      right:
+        sphere: -2
+        cylinder: 0.75
+        axis: 70
+        nearPrism:
+          in: 1
+        distancePrism:
+          in: 1.25
+          down: 0.75
+        VA: 6/5
+        pinhole: 6/6
+        add: 1.75
+        nearVision: n5
+        previousCorrectedVA: 6/9-3
+        previousCorrectedVADate: '2019-08-24'
+        unaidedVision: 6/18-2
+    additionalClinicalFindings:
+      intraocularPressureTime: '14:15:22Z'
+      tonometerUsed: string
+      fieldsInstrumentUsed: string
+      left:
+        visualField: normal
+        cdRatio: 0.3
+        opticDiscAppearance: Pink and healthy
+        averageIntraocularPressure: '12'
+      right:
+        visualField: normal
+        cdRatio: 0.3
+        opticDiscAppearance: Pink and healthy
+        averageIntraocularPressure: '12'
+    cycloplegicRefraction: true
+    dilatedFundusExamination: true
+    additionalInformation: Patient has accessibility needs
+    pmsWebhookCallback: 'http://example.com'
+description: ''
+properties:
+  urgent:
+    type: string
+    enum:
+      - notUrgent
+      - urgent
+      - emergencyASAP
+      - emergency24Hours
+  dateOfSightTest:
+    $ref: '#/components/schemas/Date'
+  dateOfReferral:
+    $ref: '#/components/schemas/Date'
+  reasonForReferral:
+    type: string
+  patient:
+    $ref: '#/components/schemas/Patient'
+  guardian:
+    type: object
+    properties:
+      name:
+        $ref: '#/components/schemas/Name'
+      address:
+        $ref: '#/components/schemas/Address'
+  referrer:
+    $ref: '#/components/schemas/Referrer'
+  GP:
+    type: object
+    properties:
+      name:
+        $ref: '#/components/schemas/Name'
+      practice:
+        $ref: '#/components/schemas/Practice'
+  GPAction:
+    type: string
+    enum:
+      - informationOnly
+      - adviseReferralToEyeDept
+      - patientSentToCasualty
+      - patientAskedToTelephoneOrVisitGP
+  referTo:
+    oneOf:
+      - properties:
+          adultClinic:
+            type: string
+            enum:
+              - cataract
+              - cornea
+              - diabeticMedicalRetina
+              - externalEyeDisease
+              - glaucoma
+              - laserYAG
+              - lowVision
+              - oculoplasticsOrbitsLacrimal
+              - otherMedicalRetina
+              - squintOcularMotility
+              - vitreolineal
+              - notOtherwiseSpecified
+      - properties:
+          childClinic:
+            type: string
+            enum:
+              - strabismus
+              - amblyopia
+              - paediatricNonStrabismus
+              - orthopticOnly
+    type: object
+  clinicalTerms:
+    type: array
+    items:
+      type: string
+  refraction:
+    $ref: '#/components/schemas/Refraction'
+  additionalClinicalFindings:
+    type: object
+    properties:
+      intraocularPressureTime:
+        type: string
+        format: time
+        description: >-
+          The time of the intraocular pressure reading in ISO 8601
+          compliant format
+      tonometerUsed:
+        type: string
+      fieldsInstrumentUsed:
+        type: string
+      right:
+        $ref: '#/components/schemas/AdditionalClinicalFindings'
+      left:
+        $ref: '#/components/schemas/AdditionalClinicalFindings'
+  cycloplegicRefraction:
+    type: boolean
+  dilatedFundusExamination:
+    type: boolean
+  additionalInformation:
+    type: string
+  pmsWebhookCallback:
+    type: string
+    description: Placeholder for callback API
+    format: uri
