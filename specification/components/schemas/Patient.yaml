@@ -1,0 +1,33 @@
+type: object
+description: ''
+properties:
+  NHSNumber:
+    type: string
+    description: Code Identifying Patient
+    example: "1234567890"
+  name:
+    $ref: 'components/schemas/Name.yaml'
+  gender:
+    type: string
+    example: "female"
+    enum:
+      - indeterminate
+      - female
+      - male
+    description: >-
+      Enum values from NHS Data Dictionary PERSON PHENOTYPIC SEX
+      CLASSIFICATION
+      (https://datadictionary.nhs.uk/attributes/person_phenotypic_sex_classification.html)
+  address:
+    $ref: '#/components/schemas/Address'
+  telephone:
+    type: string
+    example: "01937 123456"
+  mobile:
+    type: string
+    example: "07545123456"
+  email:
+    type: string
+    example: "j.jones@nowhere.com"
+  dateOfBirth:
+    $ref: '#/components/schemas/Date'
