@@ -176,7 +176,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: 'components/schemas/referral.yaml'
+              $ref: 'components/schemas/Referral.yaml'
+            example:
+              $ref: 'components/examples/Referral.json'
   '/referral/{referralID}/status':
     parameters:
       - schema:

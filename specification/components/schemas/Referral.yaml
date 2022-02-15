@@ -1,0 +1,102 @@
+title: Referral
+type: object
+description: ''
+properties:
+  urgent:
+    type: string
+    enum:
+      - notUrgent
+      - urgent
+      - emergencyASAP
+      - emergency24Hours
+  dateOfSightTest:
+    $ref: '#/components/schemas/Date'
+  dateOfReferral:
+    $ref: '#/components/schemas/Date'
+  reasonForReferral:
+    type: string
+  patient:
+    $ref: 'components/schemas/Patient.yaml'
+  guardian:
+    type: object
+    properties:
+      name:
+        $ref: '#/components/schemas/Name'
+      address:
+        $ref: '#/components/schemas/Address'
+  referrer:
+    $ref: '#/components/schemas/Referrer'
+  GP:
+    type: object
+    properties:
+      name:
+        $ref: '#/components/schemas/Name'
+      practice:
+        $ref: '#/components/schemas/Practice'
+  GPAction:
+    type: string
+    enum:
+      - informationOnly
+      - adviseReferralToEyeDept
+      - patientSentToCasualty
+      - patientAskedToTelephoneOrVisitGP
+  referTo:
+    oneOf:
+      - properties:
+          adultClinic:
+            type: string
+            enum:
+              - cataract
+              - cornea
+              - diabeticMedicalRetina
+              - externalEyeDisease
+              - glaucoma
+              - laserYAG
+              - lowVision
+              - oculoplasticsOrbitsLacrimal
+              - otherMedicalRetina
+              - squintOcularMotility
+              - vitreolineal
+              - notOtherwiseSpecified
+      - properties:
+          childClinic:
+            type: string
+            enum:
+              - strabismus
+              - amblyopia
+              - paediatricNonStrabismus
+              - orthopticOnly
+    type: object
+  clinicalTerms:
+    type: array
+    items:
+      type: string
+  refraction:
+    $ref: '#/components/schemas/Refraction'
+  additionalClinicalFindings:
+    type: object
+    properties:
+      intraocularPressureTime:
+        type: string
+        format: time
+        description: >-
+          The time of the intraocular pressure reading in ISO 8601
+          compliant format
+      tonometerUsed:
+        type: string
+      fieldsInstrumentUsed:
+        type: string
+      right:
+        $ref: '#/components/schemas/AdditionalClinicalFindings'
+      left:
+        $ref: '#/components/schemas/AdditionalClinicalFindings'
+  cycloplegicRefraction:
+    type: boolean
+  dilatedFundusExamination:
+    type: boolean
+  additionalInformation:
+    type: string
+  pmsWebhookCallback:
+    type: string
+    description: Placeholder for callback API
+    format: uri
