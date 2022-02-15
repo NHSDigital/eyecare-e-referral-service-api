@@ -6,7 +6,7 @@ properties:
     description: Code Identifying Patient
     example: "1234567890"
   name:
-    $ref: 'components/schemas/Name.yaml'
+    $ref: 'Name.yaml'
   gender:
     type: string
     example: "female"
