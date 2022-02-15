@@ -16,7 +16,7 @@ properties:
   reasonForReferral:
     type: string
   patient:
-    $ref: 'components/schemas/Patient.yaml'
+    $ref: 'Patient.yaml'
   guardian:
     type: object
     properties:
