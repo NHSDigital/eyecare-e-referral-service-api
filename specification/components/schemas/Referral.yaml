@@ -43,29 +43,27 @@ properties:
   referTo:
     oneOf:
       - type: string
-        properties:
-          adultClinic:
-          enum:
-            - cataract
-            - cornea
-            - diabeticMedicalRetina
-            - externalEyeDisease
-            - glaucoma
-            - laserYAG
-            - lowVision
-            - oculoplasticsOrbitsLacrimal
-            - otherMedicalRetina
-            - squintOcularMotility
-            - vitreolineal
-            - notOtherwiseSpecified
+        #adultClinic:
+        enum:
+          - cataract
+          - cornea
+          - diabeticMedicalRetina
+          - externalEyeDisease
+          - glaucoma
+          - laserYAG
+          - lowVision
+          - oculoplasticsOrbitsLacrimal
+          - otherMedicalRetina
+          - squintOcularMotility
+          - vitreolineal
+          - notOtherwiseSpecified
       - type: string
-        properties:
-          childClinic:
-          enum:
-            - strabismus
-            - amblyopia
-            - paediatricNonStrabismus
-            - orthopticOnly
+        #childClinic:
+        enum:
+          - strabismus
+          - amblyopia
+          - paediatricNonStrabismus
+          - orthopticOnly
   clinicalTerms:
     type: array
     items:
