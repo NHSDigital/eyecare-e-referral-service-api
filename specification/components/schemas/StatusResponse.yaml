@@ -1,0 +1,34 @@
+title: StatusResponse
+type: object
+properties:
+  referralStatus:
+    type: string
+    enum:
+      - incomplete
+      - submitted
+      - closednotsubmitted
+      - printed
+    description: >-
+      Shows the current status of the referral which will be one of:
+  
+      * **incomplete** - the referral has been received in the EeRS system but has
+      not yet not been closed or submitted.
+
+      * **submitted** - the referral has been submitted to a provider for onward care.
+  
+      * **closednotsubmitted** - the referral has been closed by the user without being submitted for any further review or action by service providers
+      e.g. because a clinician decided that a referral wasn't necessary.
+
+      * **printed** - the referral was entered manually.
+
+      Only populated for 200 SUCCESS response.
+  errorMessage:
+    type: string
+    description: >-
+      For responses other than 200 SUCCESS an error message will be
+      populated.
+  errorCode:
+    type: string
+    description: >-
+      For responses other than 200 SUCCESS an error code will be
+      populated.  

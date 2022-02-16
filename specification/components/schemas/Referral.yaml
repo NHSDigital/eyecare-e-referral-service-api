@@ -42,28 +42,31 @@ properties:
       - patientAskedToTelephoneOrVisitGP
   referTo:
     oneOf:
-      - type: string
-        #adultClinic:
-        enum:
-          - cataract
-          - cornea
-          - diabeticMedicalRetina
-          - externalEyeDisease
-          - glaucoma
-          - laserYAG
-          - lowVision
-          - oculoplasticsOrbitsLacrimal
-          - otherMedicalRetina
-          - squintOcularMotility
-          - vitreolineal
-          - notOtherwiseSpecified
-      - type: string
-        #childClinic:
-        enum:
-          - strabismus
-          - amblyopia
-          - paediatricNonStrabismus
-          - orthopticOnly
+      - properties:
+          adultClinic:
+            type: string
+            enum:
+              - cataract
+              - cornea
+              - diabeticMedicalRetina
+              - externalEyeDisease
+              - glaucoma
+              - laserYAG
+              - lowVision
+              - oculoplasticsOrbitsLacrimal
+              - otherMedicalRetina
+              - squintOcularMotility
+              - vitreolineal
+              - notOtherwiseSpecified
+      - properties:
+          childClinic:
+            type: string
+            enum:
+              - strabismus
+              - amblyopia
+              - paediatricNonStrabismus
+              - orthopticOnly
+    type: object
   clinicalTerms:
     type: array
     items:
