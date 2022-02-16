@@ -1,0 +1,14 @@
+type: object
+description: ''
+properties:
+  line:
+    type: array
+    items:
+      type: string
+  postcode:
+    type: string
+# example:
+#   - line:
+#       - 1 Station Road
+#       - Leeds
+#     postcode: LS15 8DT

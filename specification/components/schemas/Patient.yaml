@@ -9,7 +9,6 @@ properties:
     $ref: 'Name.yaml'
   gender:
     type: string
-    example: "female"
     enum:
       - indeterminate
       - female
@@ -19,15 +18,15 @@ properties:
       CLASSIFICATION
       (https://datadictionary.nhs.uk/attributes/person_phenotypic_sex_classification.html)
   address:
-    $ref: '#/components/schemas/Address'
+    $ref: 'Address.yaml'
   telephone:
     type: string
-    example: "01937 123456"
+    #example: "01937 123456"
   mobile:
     type: string
-    example: "07545123456"
+    #example: "07545123456"
   email:
     type: string
-    example: "j.jones@nowhere.com"
+    #example: "j.jones@nowhere.com"
   dateOfBirth:
-    $ref: '#/components/schemas/Date'
+    $ref: 'Date.yaml'

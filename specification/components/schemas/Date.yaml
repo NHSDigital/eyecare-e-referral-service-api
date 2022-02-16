@@ -1,0 +1,5 @@
+type: string
+example:
+  - '2019-08-24'
+description: A date in ISO 8601 compliant format
+format: date
