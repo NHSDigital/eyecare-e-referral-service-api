@@ -15,7 +15,3 @@ oneOf:
       down:
         type: number
     minProperties: 1
-# example:
-#   - in: 0.5
-#     down: 1
-#   - '1/2 BU, 1 BI'

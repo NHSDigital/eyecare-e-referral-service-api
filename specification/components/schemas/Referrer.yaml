@@ -3,26 +3,6 @@ type: object
 required:  # List the required properties here
   - registrantType
   - registrantNumber
-# example:
-#     registrantType: GOCRegistrant
-#     registrantNumber: 01-12345
-#     name:
-#       prefix : null
-#       given : Gosia
-#       family : Daria
-#       fullName : Gosia Daria
-#     practice:
-#       ODSCode: G7H8J
-#       name: The Eyecare Practice
-#       address:
-#         line:
-#           - Floor 2
-#           - Poppleton Court
-#           - George Street
-#           - Wakefield
-#         postcode: WF1 1AA
-#       email: gdaria@theeyecarepracticewakefield.co.uk
-#       telephone: 01924 567890
 properties:
   registrantType:
     type: string 

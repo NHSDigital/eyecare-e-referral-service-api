@@ -25,14 +25,14 @@ properties:
       address:
         $ref: 'Address.yaml'
   referrer:
-    $ref: '#/components/schemas/Referrer'
+    $ref: 'Referrer.yaml'
   GP:
     type: object
     properties:
       name:
         $ref: 'Name.yaml'
       practice:
-        $ref: '#/components/schemas/Practice'
+        $ref: 'Practice.yaml'
   GPAction:
     type: string
     enum:

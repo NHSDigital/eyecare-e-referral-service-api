@@ -1,10 +1,5 @@
 title: AdditionalClinicalFindings
 type: object
-# example:
-#   - visualField: normal
-#     cdRatio: 0.3
-#     opticDiscAppearance: Pink and healthy
-#     averageIntraocularPressure: '12'
 properties:
   visualField:
     type: string

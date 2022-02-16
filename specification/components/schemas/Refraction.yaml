@@ -1,21 +1,5 @@
 title: VisionTest
 type: object
-# example:
-#   - sphere: -2
-#     cylinder: 0.75
-#     axis: 70
-#     nearPrism:
-#       in: 1
-#     distancePrism:
-#       in: 1.25
-#       down: 0.75
-#     VA: 6/5
-#     pinhole: 6/6
-#     add: 1.75
-#     nearVision: n5
-#     previousCorrectedVA: 6/9-3
-#     previousCorrectedVADate: '2019-08-24'
-#     unaidedVision: 6/18-2
 properties:
   sphere:
     type: number

@@ -7,8 +7,3 @@ properties:
       type: string
   postcode:
     type: string
-# example:
-#   - line:
-#       - 1 Station Road
-#       - Leeds
-#     postcode: LS15 8DT

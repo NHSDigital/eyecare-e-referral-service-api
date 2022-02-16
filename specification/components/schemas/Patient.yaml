@@ -21,12 +21,9 @@ properties:
     $ref: 'Address.yaml'
   telephone:
     type: string
-    #example: "01937 123456"
   mobile:
     type: string
-    #example: "07545123456"
   email:
     type: string
-    #example: "j.jones@nowhere.com"
   dateOfBirth:
     $ref: 'Date.yaml'
