@@ -10,9 +10,9 @@ properties:
       - emergencyASAP
       - emergency24Hours
   dateOfSightTest:
-    $ref: '#/components/schemas/Date'
+    $ref: 'Date.yaml'
   dateOfReferral:
-    $ref: '#/components/schemas/Date'
+    $ref: 'Date.yaml'
   reasonForReferral:
     type: string
   patient:
@@ -21,16 +21,16 @@ properties:
     type: object
     properties:
       name:
-        $ref: '#/components/schemas/Name'
+        $ref: 'Name.yaml'
       address:
-        $ref: '#/components/schemas/Address'
+        $ref: 'Address.yaml'
   referrer:
     $ref: '#/components/schemas/Referrer'
   GP:
     type: object
     properties:
       name:
-        $ref: '#/components/schemas/Name'
+        $ref: 'Name.yaml'
       practice:
         $ref: '#/components/schemas/Practice'
   GPAction:
@@ -41,7 +41,9 @@ properties:
       - patientSentToCasualty
       - patientAskedToTelephoneOrVisitGP
   referTo:
+  type: object
     oneOf:
+    type: object
       - properties:
           adultClinic:
             type: string
@@ -66,7 +68,7 @@ properties:
               - amblyopia
               - paediatricNonStrabismus
               - orthopticOnly
-    type: object
+    #type: object
   clinicalTerms:
     type: array
     items:
