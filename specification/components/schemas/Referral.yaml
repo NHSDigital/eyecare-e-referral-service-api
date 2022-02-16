@@ -41,6 +41,8 @@ properties:
       - patientSentToCasualty
       - patientAskedToTelephoneOrVisitGP
   referTo:
+    #oneOf:
+    type: object
     oneOf:
       - properties:
           adultClinic:
@@ -66,13 +68,13 @@ properties:
               - amblyopia
               - paediatricNonStrabismus
               - orthopticOnly
-    type: object
+    #type: object
   clinicalTerms:
     type: array
     items:
       type: string
   refraction:
-    $ref: '#/components/schemas/Refraction'
+    $ref: 'Refraction.yaml'
   additionalClinicalFindings:
     type: object
     properties:
@@ -87,9 +89,9 @@ properties:
       fieldsInstrumentUsed:
         type: string
       right:
-        $ref: '#/components/schemas/AdditionalClinicalFindings'
+        $ref: 'AdditionalClinicalFindings.yaml'
       left:
-        $ref: '#/components/schemas/AdditionalClinicalFindings'
+        $ref: 'AdditionalClinicalFindings.yaml'
   cycloplegicRefraction:
     type: boolean
   dilatedFundusExamination:

@@ -1,0 +1,25 @@
+title: Practice
+type: object
+required:  # List the required properties here
+  - ODSCode 
+properties:       
+  ODSCode:
+    type: string
+  name:
+    type: string
+  address:
+    $ref: 'Address.yaml'
+  email:
+    type: string
+  telephone:
+    type: string
+# example:
+#   - ODSCode: G7A9I
+#     name: The Practice
+#     address:
+#       line:
+#         - 1 Station Road
+#         - Leeds
+#       postcode: LS15 8DT
+#     email: reception@theleedsexamplepractice.nhs.uk
+#     telephone: 0113 212 3456
