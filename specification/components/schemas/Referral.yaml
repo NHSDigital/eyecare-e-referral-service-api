@@ -41,9 +41,7 @@ properties:
       - patientSentToCasualty
       - patientAskedToTelephoneOrVisitGP
   referTo:
-  type: object
     oneOf:
-    type: object
       - properties:
           adultClinic:
             type: string
@@ -68,7 +66,7 @@ properties:
               - amblyopia
               - paediatricNonStrabismus
               - orthopticOnly
-    #type: object
+    type: object
   clinicalTerms:
     type: array
     items:
