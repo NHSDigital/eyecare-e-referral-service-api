@@ -15,6 +15,7 @@ properties:
     $ref: 'Date.yaml'
   reasonForReferral:
     type: string
+    example: "Needs assessment for cataract surgery"
   patient:
     $ref: 'Patient.yaml'
   guardian:
