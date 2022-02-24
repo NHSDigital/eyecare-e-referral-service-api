@@ -68,10 +68,7 @@ properties:
               - paediatricNonStrabismus
               - orthopticOnly
     type: object
-  clinicalTerms:
-    type: array
-    items:
-      type: string
+
   refraction:
     $ref: 'Refraction.yaml'
   additionalClinicalFindings:
