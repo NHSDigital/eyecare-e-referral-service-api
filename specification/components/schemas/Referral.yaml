@@ -95,7 +95,9 @@ properties:
     type: boolean
   additionalInformation:
     type: string
+    example: "Patient has accessibility needs"
   pmsWebhookCallback:
     type: string
     description: Placeholder for callback API
     format: uri
+    example: "http://example.com"
