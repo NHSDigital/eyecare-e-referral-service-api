@@ -12,6 +12,7 @@ properties:
       - GMCRegistrant
   registrantNumber:
     type: string
+    example: "01-12345"
   name:
     $ref: 'Name.yaml'
   practice:
