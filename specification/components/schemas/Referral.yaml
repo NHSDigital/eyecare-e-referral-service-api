@@ -80,6 +80,7 @@ properties:
         description: >-
           The time of the intraocular pressure reading in ISO 8601
           compliant format
+        example: "14:15:22Z"
       tonometerUsed:
         type: string
       fieldsInstrumentUsed:
