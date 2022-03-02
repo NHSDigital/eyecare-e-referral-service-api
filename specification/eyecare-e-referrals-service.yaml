@@ -38,7 +38,7 @@ info:
 
     ## Who can use this API
 
-    This API standard can be provided by any EeRS as procured regionally.  It can be used by any Optometry PMS to allow an Optometrist to send a referral into a specific EeRS system. Integrated Care Systems may require each Optometry system in use in their area to link to their specific EeRS system.
+    This API standard can be provided by any EeRS as procured regionally.  It can be used by any Optometry PMS to allow an optometrist to send a referral into a specific EeRS system. Integrated Care Systems may require each Optometry system in use in their area to link to their specific EeRS system.
     
     ## API status and roadmap
 
