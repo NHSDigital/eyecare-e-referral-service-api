@@ -1,6 +1,6 @@
 title: Referral
 type: object
-description: ''
+description: "The referral to be created"
 properties:
   urgent:
     type: string
