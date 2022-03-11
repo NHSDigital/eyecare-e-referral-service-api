@@ -1,9 +1,10 @@
 type: object
-description: ''
+description: 'Address details'
 properties:
-  line:
+  line: [ "1 The Road", "Wetherby", "North Yorkshire" ]
     type: array
     items:
       type: string
   postcode:
     type: string
+    example: "LS10 1JR"
