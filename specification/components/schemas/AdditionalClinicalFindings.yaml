@@ -3,13 +3,17 @@ type: object
 properties:
   visualField:
     type: string
+    example: "normal"
   cdRatio:
     type: number
     description: 'C:D'
+    example: 0.3
   opticDiscAppearance:
     type: string
+    example: "Pink and healthy"
   averageIntraocularPressure:
     type: number
+    example: "12"
   intraocularPressureReadings:
     type: array
     items:
