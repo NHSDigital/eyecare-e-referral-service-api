@@ -8,10 +8,12 @@ oneOf:
     properties:
       in:
         type: number
+        example: 1.25
       out:
         type: number
       up:
         type: number
       down:
         type: number
+        example: 0.75
     minProperties: 1
