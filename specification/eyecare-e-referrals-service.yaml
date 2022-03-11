@@ -208,6 +208,7 @@ paths:
               description: The version number of the API you wish to invoke.
               schema:
                 type: string
+                example: "1.0.0"
         '4XX':
           description: |
             An error occurred as follows:
