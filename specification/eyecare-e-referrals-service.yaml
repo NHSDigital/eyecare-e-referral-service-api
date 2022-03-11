@@ -273,7 +273,7 @@ components:
   parameters:
     VersionHeader:
       name: Accept-Version
-      description:  The version number of the API you invoked.
+      description:  The version number of the API you wish to call.
       in: header
       schema:
         type: string
