@@ -5,11 +5,15 @@ required:  # List the required properties here
 properties:       
   ODSCode:
     type: string
+    example: "G7H8J"
   name:
     type: string
+    example: "The Eyecare Practice"
   address:
     $ref: 'Address.yaml'
   email:
     type: string
+    example: "gdaria@theeyecarepracticewakefield.co.uk"
   telephone:
     type: string
+    example: "01924 567890"
