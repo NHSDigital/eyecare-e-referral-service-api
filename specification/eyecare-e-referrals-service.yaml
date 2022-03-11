@@ -107,7 +107,7 @@ paths:
                 referralStatus: incomplete
           headers:
             Accept-Version:
-              description: The Version number of the API you wish to call.
+              description: The version number of the API you wish to call.
               schema:
                 type: string
                 example: 1.0.0
@@ -134,7 +134,7 @@ paths:
                 errorCode: E0001
           headers:
             Accept-Version:
-              description: The Version number of the API you wish to call.
+              description: The version number of the API you wish to call.
               schema:
                 type: string
         '500':
@@ -184,7 +184,8 @@ paths:
       - schema:
           type: string
         name: referralID
-        description: referral ID
+        description: The unique, system-agnostic identifier of the referral. Must be an RCF 4122 compliant UUID.
+        example: "123e4567-e89b-12d3-a456-426614174000"
         in: path
         required: true
     get:
@@ -204,9 +205,19 @@ paths:
                 referralStatus: incomplete
           headers:
             Accept-Version:
-              description: The Version number of the API you invoked.
+              description: The version number of the API you wish to invoke.
               schema:
                 type: string
+        '4XX':
+          description: |
+            An error occurred as follows:
+              
+            | HTTP status | errorMessage                                               | errorCode     | Scenario                                                |
+            | ----------- |----------------------------------------------------------- |-------------- | ------------------------------------------------------- |
+            | 400         | The request was malformed and couldn't be processed        | E0001         | JSON could not be parsed for processing. It is invalid. |
+            | 401         | The API-KEY is invalid                                     | E0010         | Either the API-KEY is invalid or the values in the ODS and GOCNumber fields failed authentication. |
+            | 404         | ReferralID cannot be found by the receiving system         | E0004         | Referral with given ID not found on receiving system. |
+       
         '400':
           description: Bad Request
           content:
@@ -218,7 +229,7 @@ paths:
                 errorCode:  E0001
           headers:
             Accept-Version:
-              description: The Version number of the API you invoked.
+              description: The version number of the API you invoked.
               schema:
                 type: string
         '401':
@@ -232,7 +243,7 @@ paths:
                 errorCode:  E0010
           headers:
             Accept-Version:
-              description: The Version number of the API you invoked.
+              description: The version number of the API you invoked.
               schema:
                 type: string
         '404':
@@ -246,7 +257,7 @@ paths:
                 errorCode:  E0005        
           headers:
             Accept-Version:
-              description: The Version number of the API you invoked.
+              description: The version number of the API you invoked.
               schema:
                 type: string
         '500':
