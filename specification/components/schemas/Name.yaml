@@ -5,10 +5,13 @@ description: >-
 properties:
   prefix:
     type: string
+    example: "Mrs"
   given:
     type: string
+    example: "Jane"
   family:
     type: string
+    example: "Jones"
   fullName:
     type: string
     description: Text representation of the full name
