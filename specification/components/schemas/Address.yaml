@@ -1,10 +1,11 @@
 type: object
 description: 'Address details'
 properties:
-  line: [ 
+  line:
+  example:
   "1 The Road", 
   "Wetherby", 
-  "North Yorkshire" ]
+  "North Yorkshire"
     type: array
     items:
       type: string
