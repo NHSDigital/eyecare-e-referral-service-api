@@ -7,6 +7,13 @@ x-meta:
   service_base_path: "eyecare-referrals"
   product_description: "A simple API to allow details of a new eyecare referral to be passed to an Eyecare electroinc referral system (EeRS) from an Optometry patient management system."
   pipeline_name_prefix: "Eyecare-Referrals"
+x-spec-publication:
+  operation-order:
+  - operations:
+    - method: POST
+      path: /referrals
+    - method: GET
+      path: /referral/{referralID}/status
 info:
   title: Eyecare electronic Referral API
   version: '1.0.0'
