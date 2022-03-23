@@ -216,15 +216,6 @@ paths:
               schema:
                 type: string
                 example: "1.0.0"
-        '4XX':
-          description: |
-            An error occurred as follows:
-              
-            | HTTP status | errorMessage                                               | errorCode     | Scenario                                                |
-            | ----------- |----------------------------------------------------------- |-------------- | ------------------------------------------------------- |
-            | 400         | The request was malformed and couldn't be processed        | E0001         | JSON could not be parsed for processing. It is invalid. |
-            | 401         | The API-KEY is invalid                                     | E0010         | Either the API-KEY is invalid or the values in the ODS and GOCNumber fields failed authentication. |
-            | 404         | ReferralID cannot be found by the receiving system         | E0004         | Referral with given ID not found on receiving system. |
        
         '400':
           description: Bad Request
