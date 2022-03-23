@@ -1,4 +1,4 @@
-[ {
+{
   "urgent" : "emergencyASAP",
   "dateOfSightTest" : "2019-08-24",
   "dateOfReferral" : "2019-08-24",
@@ -137,4 +137,4 @@
   "dilatedFundusExamination" : true,
   "additionalInformation" : "Patient has accessibility needs",
   "pmsWebhookCallback" : "http://example.com"
-} ]
+}
