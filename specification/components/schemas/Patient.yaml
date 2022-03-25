@@ -1,0 +1,32 @@
+type: object
+description: ''
+properties:
+  NHSNumber:
+    type: string
+    description: The patient's NHS number. The primary identifier of a patient, unique within NHS England and Wales. Always 10 digits and must be a valid NHS number.
+    example: "9000000009"
+  name:
+    $ref: 'Name.yaml'
+  gender:
+    type: string
+    enum:
+      - indeterminate
+      - female
+      - male
+    description: >-
+      Enum values from NHS Data Dictionary PERSON PHENOTYPIC SEX
+      CLASSIFICATION
+      (https://datadictionary.nhs.uk/attributes/person_phenotypic_sex_classification.html)
+  address:
+    $ref: 'Address.yaml'
+  telephone:
+    type: string
+    example: "01937 123456"
+  mobile:
+    type: string
+    example: "07545 123456"
+  email:
+    type: string
+    example: "j.jones@nowhere.com"
+  dateOfBirth:
+    $ref: 'Date.yaml'

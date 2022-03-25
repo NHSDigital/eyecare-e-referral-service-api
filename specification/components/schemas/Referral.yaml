@@ -1,0 +1,103 @@
+title: Referral
+type: object
+description: "The referral to be created"
+properties:
+  urgent:
+    type: string
+    enum:
+      - notUrgent
+      - urgent
+      - emergencyASAP
+      - emergency24Hours
+  dateOfSightTest:
+    $ref: 'Date.yaml'
+  dateOfReferral:
+    $ref: 'Date.yaml'
+  reasonForReferral:
+    type: string
+    example: "Needs assessment for cataract surgery"
+  patient:
+    $ref: 'Patient.yaml'
+  guardian:
+    type: object
+    properties:
+      name:
+        $ref: 'Name.yaml'
+      address:
+        $ref: 'Address.yaml'
+  referrer:
+    $ref: 'Referrer.yaml'
+  GP:
+    type: object
+    properties:
+      name:
+        $ref: 'Name.yaml'
+      practice:
+        $ref: 'Practice.yaml'
+  GPAction:
+    type: string
+    enum:
+      - informationOnly
+      - adviseReferralToEyeDept
+      - patientSentToCasualty
+      - patientAskedToTelephoneOrVisitGP
+  referTo:
+    oneOf:
+      - properties:
+          adultClinic:
+            type: string
+            enum:
+              - cataract
+              - cornea
+              - diabeticMedicalRetina
+              - externalEyeDisease
+              - glaucoma
+              - laserYAG
+              - lowVision
+              - oculoplasticsOrbitsLacrimal
+              - otherMedicalRetina
+              - squintOcularMotility
+              - vitreolineal
+              - notOtherwiseSpecified
+      - properties:
+          childClinic:
+            type: string
+            enum:
+              - strabismus
+              - amblyopia
+              - paediatricNonStrabismus
+              - orthopticOnly
+    type: object
+
+  refraction:
+    $ref: 'Refraction.yaml'
+  additionalClinicalFindings:
+    type: object
+    properties:
+      intraocularPressureTime:
+        type: string
+        format: time
+        description: >-
+          The time of the intraocular pressure reading in ISO 8601
+          compliant format
+        example: "14:15:22Z"
+      tonometerUsed:
+        type: string
+      fieldsInstrumentUsed:
+        type: string
+      right:
+        $ref: 'AdditionalClinicalFindings.yaml'
+      left:
+        $ref: 'AdditionalClinicalFindings.yaml'
+  cycloplegicRefraction:
+    type: boolean
+  dilatedFundusExamination:
+    type: boolean
+  additionalInformation:
+    type: string
+    example: "Patient has accessibility needs"
+  pmsWebhookCallback:
+    type: string
+    description: Placeholder for callback API
+    format: uri
+    example: "http://example.com"

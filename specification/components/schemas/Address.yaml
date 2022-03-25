@@ -1,0 +1,14 @@
+type: object
+description: 'Address details'
+properties:
+  line:
+    type: array
+    items:
+      type: string
+    example:
+      - 1 The Road
+      - Wetherby
+      - North Yorkshire
+  postcode:
+    type: string
+    example: "LS10 1JR"

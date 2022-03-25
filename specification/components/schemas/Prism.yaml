@@ -1,0 +1,19 @@
+title: Prism
+oneOf:
+  - type: string
+    description: >-
+      Allows the base and prism to be represented as an unformatted string
+      as entered by the user.
+  - type: object
+    properties:
+      in:
+        type: number
+        example: 1.25
+      out:
+        type: number
+      up:
+        type: number
+      down:
+        type: number
+        example: 0.75
+    minProperties: 1

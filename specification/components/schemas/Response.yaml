@@ -1,0 +1,27 @@
+title: Response
+type: object
+properties:
+  referralID:
+    type: string
+    description: >-
+      The unique, system-agnostic identifier of the referral. Must be an
+      RCF 4122 compliant UUID. Only returned for a response of 201 CREATED
+  referralURL:
+    type: string
+    description: >-
+      The EeRS URL the user should be redirected to for viewing the
+      created referral. Only returned for a response of 201 CREATED
+  referralStatus:
+    type: string
+    description: >-
+      The status of the referral in EeRS. Only returned for a response of 201 CREATED
+  errorMessage:
+    type: string
+    description: >-
+      For responses other than 201 CREATED an error message will be
+      populated
+  errorCode:
+    type: string
+    description: >-
+      For responses other than 201 CREATED an error code will be
+      populated    

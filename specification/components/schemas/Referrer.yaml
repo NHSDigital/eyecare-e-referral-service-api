@@ -1,0 +1,19 @@
+title: Referrer
+type: object
+required:  # List the required properties here
+  - registrantType
+  - registrantNumber
+properties:
+  registrantType:
+    type: string 
+    default: GOCRegistrant
+    enum:
+      - GOCRegistrant
+      - GMCRegistrant
+  registrantNumber:
+    type: string
+    example: "01-12345"
+  name:
+    $ref: 'Name.yaml'
+  practice:
+    $ref: 'Practice.yaml'

@@ -1,0 +1,39 @@
+title: VisionTest
+type: object
+properties:
+  sphere:
+    type: number
+    example: -2
+  cylinder:
+    type: number
+    example: 0.75
+  axis:
+    type: number
+    example: 70
+  nearPrism:
+    $ref: 'Prism.yaml'
+  distancePrism:
+    $ref: 'Prism.yaml'
+  VA:
+    type: string
+    example: "6/5"
+  VAMeasure:
+    type: string
+    description: 'E.g. Snellen, Logmar'
+  pinhole:
+    type: string
+    example: "6/6"
+  add:
+    type: number
+    example: 1.75
+  nearVision:
+    type: string
+    example: "n5"
+  previousCorrectedVA:
+    type: string
+    example: "6/9-3"
+  previousCorrectedVADate:
+    $ref: 'Date.yaml'
+  unaidedVision:
+    type: string
+    example: "6/18-2"

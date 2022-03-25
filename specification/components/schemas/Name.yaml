@@ -1,0 +1,17 @@
+type: object
+description: >-
+  Represents a person's name. Provides the option to include the name
+  broken down if held.
+properties:
+  prefix:
+    type: string
+    example: "Mrs"
+  given:
+    type: string
+    example: "Jane"
+  family:
+    type: string
+    example: "Jones"
+  fullName:
+    type: string
+    description: Text representation of the full name
