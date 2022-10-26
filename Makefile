@@ -4,7 +4,7 @@ install-python:
 	poetry install
 
 install-node:
-	npm install
+	npm install --legacy-peer-deps
 
 .git/hooks/pre-commit:
 	cp scripts/pre-commit .git/hooks/pre-commit
