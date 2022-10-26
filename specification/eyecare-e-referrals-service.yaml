@@ -49,7 +49,7 @@ info:
     
     ## API status and roadmap
 
-    This API standard is [in production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-statuses) meaning, we might make breaking changes, but only if we cannot avoid it, and we will give an advance notice.
+    This API standard is [in production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) meaning, we might make breaking changes, but only if we cannot avoid it, and we will give an advance notice.
     
     To suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=eyecare-e-referral-api&deleted=0#controls).
 
