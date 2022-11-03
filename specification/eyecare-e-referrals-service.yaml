@@ -49,19 +49,19 @@ info:
     
     ## API status and roadmap
  
-    This API standard is [in production, beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) meaning, we might make breaking changes, but only if we cannot avoid it, and we will give an advance notice.
+    This API standard is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) meaning, we might make breaking changes, but only if we cannot avoid it, and we will give an advance notice.
     
     To suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=eyecare-e-referral-api&deleted=0#controls).
 
-    If you have any other queries, please contact us at [bookingandreferrals@nhs.net](mailto:bookingandreferrals@nhs.net).
+    If you have any other queries, contact us at [bookingandreferrals@nhs.net](mailto:bookingandreferrals@nhs.net).
     
     ### Version control
 
     We use HTTP headers to allow you to specify the API version you want to call.
 
-    In general, once an API is stable (meaning it has exited beta) we avoid making any breaking changes. That means we might add new data fields or add new valid values to code sets, but we won't remove any mandatory fields or change the semantic meaning of any existing fields or code sets.
+    In general, once an API is in production (meaning it has exited beta) we avoid making any breaking changes. That means we might add new data fields or add new valid values to code sets, but we won't remove any mandatory fields or change the semantic meaning of any existing fields or code sets.
 
-    If we ever do need to make breaking changes to a stable API, we will continue to use HTTP headers to allow you to specify the API version you want to call. We'll do this in a backwards-compatible way.
+    If we ever do need to make breaking changes to an in production API, we will continue to use HTTP headers to allow you to specify the API version you want to call. We'll do this in a backwards-compatible way.
 
     This spec version:            1.0.0
 
