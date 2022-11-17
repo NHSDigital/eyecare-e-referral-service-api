@@ -47,7 +47,7 @@ info:
 
     This API standard can be provided by any EeRS as procured regionally.  It can be used by any Optometry PMS to allow an optometrist to send a referral into a specific EeRS system. Integrated Care Systems may require each Optometry system in use in their area to link to their specific EeRS system.
     
-    ## API status and roadmap
+    ## Status and roadmap
  
     This API standard is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses) meaning, we might make breaking changes, but only if we cannot avoid it, and we will give an advance notice.
     
