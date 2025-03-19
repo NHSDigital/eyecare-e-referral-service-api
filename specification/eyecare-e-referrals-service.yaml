@@ -61,11 +61,9 @@ info:
     
     ## Status and roadmap
  
-    This API standard is in [draft](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses).
+    This API standard is [retired](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses), meaning it is not being maintained and should not be used.
     
-    To suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=eyecare-e-referral-api&deleted=0#controls).
-
-    If you have any other queries, contact us at [bookingandreferrals@nhs.net](mailto:bookingandreferrals@nhs.net).
+    If you have any queries, contact us at [england.eyecare-transformation@nhs.net](mailto:england.eyecare-transformation@nhs.net).
     
     ### Version control
 
