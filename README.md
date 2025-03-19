@@ -1,4 +1,4 @@
-# Eyecare eReferrals Service API
+# Eyecare e-Referrals Service API
 
 ![Build](https://github.com/NHSDigital/eyecare-e-referrals-service/workflows/Build/badge.svg?branch=master)
 
