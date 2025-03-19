@@ -1,7 +1,7 @@
 SHELL=/bin/bash -euo pipefail
 
 install-python:
-	pip install "poetry<2.0.0"
+	poetry install
 
 install-node:
 	npm install --legacy-peer-deps
