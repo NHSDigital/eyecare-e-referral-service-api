@@ -1,7 +1,5 @@
 SHELL=/bin/bash -euo pipefail
 
-install: install-node install-python
-
 install-python:
 	poetry install
 
