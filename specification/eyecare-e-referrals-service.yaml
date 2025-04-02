@@ -22,7 +22,22 @@ info:
     email: api.management@nhs.net
   description: |
     ## Overview
-
+    
+    <div class="nhsd-m-emphasis-box nhsd-m-emphasis-box--emphasis nhsd-!t-margin-bottom-6" aria-label="Highlighted Information">
+        <div class="nhsd-a-box nhsd-a-box--border-blue">
+            <div class="nhsd-m-emphasis-box__image-box">
+                <figure class="nhsd-a-image">
+                    <picture class="nhsd-a-image__picture">
+                        <img src="http://digital.nhs.uk/binaries/content/gallery/icons/info.svg?colour=231f20" alt="" style="object-fit:fill">
+                    </picture>
+                </figure>
+            </div>
+            <div class="nhsd-m-emphasis-box__content-box">
+                <div data-uipath="website.contentblock.emphasis.content" class="nhsd-t-word-break"><p class="nhsd-t-body">This API is <a href="https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses">retired</a> and not available for use.</p></div>
+            </div>
+        </div>
+    </div>
+    
     Use this API standard to pass details of a new eyecare referral from an Optometry Patient Management System (Optometry PMS) to an Eyecare electronic Referral system (EeRS).
     
     The API standard supports sending key referral information (including the GOS18 data items) from an optometrist to NHS services via an EeRS. This is important for engaging optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
@@ -62,6 +77,8 @@ info:
     ## Status and roadmap
  
     This API standard is [retired](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses), meaning it is not being maintained and should not be used.
+    
+    Depending on your situation, you might be able to use the [e-Referral Service FHIR API](https://digital.nhs.uk/developer/api-catalogue/e-referral-service-fhir) instead.
     
     If you have any other queries, contact us at [england.eyecare-transformation@nhs.net](mailto:england.eyecare-transformation@nhs.net).
     
