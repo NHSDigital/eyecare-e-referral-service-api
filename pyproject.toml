@@ -13,7 +13,7 @@ license = "MIT"
 repository = "https://github.com/NHSDigital/eyecare-e-referrals-service"
 homepage = "https://github.com/NHSDigital/eyecare-e-referrals-service"
 keywords = ["healthcare", "uk", "nhs"] #TODO add additional keywords
-
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.8"
