@@ -18,7 +18,7 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
-      ref: refs/heads/edge
+      ref: refs/heads/task-5886New
       endpoint: NHSDigital
 
 variables:
