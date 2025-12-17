@@ -41,7 +41,14 @@ info:
     </div>
     
     ## Overview
-    
+
+    Updated the Spec to check the copy spec updates.
+    Updated the Spec to check the copy spec updates.
+    Updated the Spec to check the copy spec updates.
+    Updated the Spec to check the copy spec updates.
+    Updated the Spec to check the copy spec updates.
+    Updated the Spec to check the copy spec updates.
+
     Use this API standard to pass details of a new eyecare referral from an Optometry Patient Management System (Optometry PMS) to an Eyecare electronic Referral system (EeRS).
     
     The API standard supports sending key referral information (including the GOS18 data items) from an optometrist to NHS services via an EeRS. This is important for engaging optometrists in digital referrals into the NHS, and eliminate double-keying of information documented as part of a sight test or optical consultation.
