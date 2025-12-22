@@ -24,6 +24,7 @@ resources:
 pool:
   vmImage: 'AWS-ECS'
 
+
 variables:
   - template: project.yml
 
