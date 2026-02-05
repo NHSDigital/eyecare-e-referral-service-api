@@ -8,7 +8,7 @@ This is a RESTful HL7® FHIR® API specification for the *Eyecare e-Referrals Se
 
 Consumers of the API will find developer documentation on the [NHS Digital Developer Hub](https://developer.digital.nhs.uk/).
 
-##### Contributing
+### Contributing
 Contributions to this project are welcome from anyone, providing that they conform to the [guidelines for contribution](https://github.com/NHSDigital/eyecare-e-referrals-service/blob/master/CONTRIBUTING.md) and the [community code of conduct](https://github.com/NHSDigital/eyecare-e-referrals-service/blob/master/CODE_OF_CONDUCT.md).
 
 ### Licensing
